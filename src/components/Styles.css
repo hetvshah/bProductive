@@ -1,16 +1,15 @@
 .header {
-  width: 100vw;
+  /* width: 100vw; */
   height: 5vh;
   display: flex;
   flex-direction: row;
-  font-size: 1.5vw;
-  justify-content: space-between;
+  font-size: 1.25vw;
   margin-top: 1.5vw;
 }
 
 .topLinks {
   text-align: right;
-  /* margin-left: auto; */
+  margin-left: auto;
   margin-right: 7.5vw;
 }
 
@@ -26,32 +25,49 @@ u:hover {
 .todo {
   background: #eee8f6;
   border-radius: 25px;
-  /* width: 50vw;
-  height: 15vh; */
   margin: 15px;
   padding: 10px 45px;
-  cursor: pointer;
   margin-left: 7.5vw;
   margin-right: 7.5vw;
+  display: flex;
+  flex-direction: row;
 }
 
-.todo h3 {
+.todo:hover {
+  background: #05050510;
+}
+
+.todo-complete {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+/* .todo h3 {
   align-items: center;
   justify-content: space-between;
-  font-size: 1.25vw;
+  font-size: 1.2vw;
 }
 
 .todo p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 1.2vw;
+  font-size: 1vw;
 }
 
 .todo input {
-  width: 20px;
-  height: 20px;
+  width: 1vw;
+  height: 1vw;
   margin-right: 25px;
-  padding: 3px 7px;
-  font-size: 17px;
+} */
+
+.times {
+  text-align: center;
+  padding: 40px 0;
+  margin-left: auto;
+  margin-right: 0;
+  font-style: italic;
+  font-weight: 200;
+  color: #2c2c2c;
+  font-size: 1.1vw;
 }

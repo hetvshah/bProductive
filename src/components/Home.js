@@ -1,8 +1,8 @@
-import './Home.css';
+import './Styles.css';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const tasks = [
+  const ongoingTasks = [
     {
       todo: 'Finish part 7 of CIS 121 programming. ',
       notes: 'Make sure to pay attention to runtimes.',
@@ -17,13 +17,35 @@ const Home = () => {
     },
   ];
 
-  const listTasks = tasks.map((task) => (
+  const completedTasks = [
+    {
+      todo: 'Call mom. ',
+      notes: 'Ask about trip to NYC.',
+    },
+  ];
+
+  const listOngoingTasks = ongoingTasks.map((task) => (
     <div className="todo">
-      <h3>
-        <input type="checkbox" />
-        {task.todo}
-      </h3>
-      <p>{task.notes}</p>
+      <div>
+        <h3>
+          {/* <input type="checkbox" /> */}
+          {task.todo}
+        </h3>
+        <p>{task.notes}</p>
+      </div>
+
+      <div className="times">15m / 30m</div>
+    </div>
+  ));
+
+  const listCompletedTasks = completedTasks.map((task) => (
+    <div className="todo todo-complete">
+      <div>
+        <h3>{task.todo}</h3>
+        <p>{task.notes}</p>
+      </div>
+
+      <div className="times">15m / 30m</div>
     </div>
   ));
 
@@ -32,10 +54,7 @@ const Home = () => {
       <div className="header">
         <p style={{ marginLeft: '7.5vw' }}>Hi Hetvi!</p>
         <div className="topLinks">
-          <p className="links">
-            <Link to="/planning">
-              <u>Planning</u>
-            </Link>
+          <p>
             <Link to="/calendar">
               <u>Calendar</u>
             </Link>
@@ -49,9 +68,17 @@ const Home = () => {
         className="header"
         style={{ marginLeft: '7.5vw', fontSize: '1.25vw', marginTop: '2.5vw' }}
       >
-        Today is Friday, May 21st. Here is your to-do list for today, good luck!
+        Today is Friday, May 21st. Here is your to-do list, good luck!
       </p>
-      {listTasks}
+
+      <h2 style={{ padding: '0 0 0.5vw 0', marginLeft: '7.5vw' }}>
+        Ongoing Tasks
+      </h2>
+      {listOngoingTasks}
+      <h2 style={{ padding: '0.5vw 0', marginLeft: '7.5vw' }}>
+        Completed Tasks
+      </h2>
+      {listCompletedTasks}
     </div>
   );
 };
