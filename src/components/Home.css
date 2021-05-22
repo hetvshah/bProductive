@@ -3,7 +3,7 @@
   height: 5vh;
   display: flex;
   flex-direction: row;
-  font-size: 1.75vw;
+  font-size: 1.5vw;
   justify-content: space-between;
   margin-top: 1.5vw;
 }
@@ -11,7 +11,7 @@
 .topLinks {
   text-align: right;
   /* margin-left: auto; */
-  margin-right: 3.5vw;
+  margin-right: 7.5vw;
 }
 
 u {
@@ -20,15 +20,38 @@ u {
 }
 
 u:hover {
-  color: #6600cc;
+  color: #cc99ff;
 }
 
-.header2 {
-  width: 100vw;
-  height: 5vh;
-  display: flex;
-  flex-direction: row;
-  font-size: 1.3vw;
+.todo {
+  background: #eee8f6;
+  border-radius: 25px;
+  /* width: 50vw;
+  height: 15vh; */
+  margin: 15px;
+  padding: 10px 45px;
+  cursor: pointer;
+  margin-left: 7.5vw;
+  margin-right: 7.5vw;
+}
+
+.todo h3 {
+  align-items: center;
   justify-content: space-between;
-  margin: 0;
+  font-size: 1.25vw;
+}
+
+.todo p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.2vw;
+}
+
+.todo input {
+  width: 20px;
+  height: 20px;
+  margin-right: 25px;
+  padding: 3px 7px;
+  font-size: 17px;
 }
