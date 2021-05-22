@@ -7,67 +7,38 @@ import AddTask from './AddTask';
 import { useState } from 'react';
 
 const Home = () => {
+  const [showAddTask, setAddTask] = useState(false);
+
   const [ongoingTasks, setOngoingTasks] = useState([
     {
-      todo: 'Finish part 7 of CIS 121 programming. ',
+      text: 'Finish part 7 of CIS 121 programming. ',
+      day: 'Feb 7th at 1:30 pm ',
+      estimate: '15m',
       notes: 'Make sure to pay attention to runtimes. ',
+      displayTask: true,
+      displayCalendar: true,
     },
     {
-      todo: 'Respond to emails.',
+      text: 'Respond to emails.',
+      day: 'Feb 21st at midnight',
+      estimate: '2m',
       notes: 'Specifically John Doe and research mentor.',
+      displayTask: true,
+      displayCalendar: false,
     },
     {
-      todo: 'Search for apartments.',
+      text: 'Search for apartments.',
+      day: 'June 15th at noon',
+      estimate: '3hr',
       notes: '',
+      displayTask: false,
+      displayCalendar: true,
     },
   ]);
 
-  // const ongoingTasks = [
-  //   {
-  //     todo: 'Finish part 7 of CIS 121 programming. ',
-  //     notes: 'Make sure to pay attention to runtimes.',
-  //   },
-  //   {
-  //     todo: 'Respond to emails.',
-  //     notes: 'Specifically John Doe and research mentor.',
-  //   },
-  //   {
-  //     todo: 'Search for apartments.',
-  //     notes: '',
-  //   },
-  // ];
-
-  // const completedTasks = [
-  //   {
-  //     todo: 'Call mom. ',
-  //     notes: 'Ask about trip to NYC.',
-  //   },
-  // ];
-
-  // const listOngoingTasks = ongoingTasks.map((task) => (
-  //   <div className="todo">
-  //     <div>
-  //       <h3>
-  //         {/* <input type="checkbox" /> */}
-  //         {task.todo}
-  //       </h3>
-  //       <p>{task.notes}</p>
-  //     </div>
-
-  //     <div className="times">15m / 30m</div>
-  //   </div>
-  // ));
-
-  // const listCompletedTasks = completedTasks.map((task) => (
-  //   <div className="todo todo-complete">
-  //     <div>
-  //       <h3>{task.todo}</h3>
-  //       <p>{task.notes}</p>
-  //     </div>
-
-  //     <div className="times">15m / 30m</div>
-  //   </div>
-  // ));
+  const addTask = (task) => {
+    setOngoingTasks([...ongoingTasks, task]);
+  };
 
   return (
     <div>
@@ -89,14 +60,17 @@ const Home = () => {
       </p>
 
       <div className="task-btn">
-        <h2 style={{ padding: '0 0 0.5vw 0' }}>Ongoing Tasks</h2>
-        <Button />
+        <h2 style={{ padding: '0 0 0.25vw 0' }}>Ongoing Tasks</h2>
+        <Button
+          onClick={() => setAddTask(!showAddTask)}
+          showAddTask={showAddTask}
+        />
       </div>
 
-      <AddTask />
+      {showAddTask && <AddTask onAdd={addTask} />}
 
       <OngoingTasks ongoingTasks={ongoingTasks} />
-      <h2 style={{ padding: '0.5vw 0' }}>Completed Tasks</h2>
+      <h2 style={{ padding: '1vw 0' }}>Completed Tasks</h2>
       <CompletedTasks />
     </div>
   );

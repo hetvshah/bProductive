@@ -1,13 +1,15 @@
 import { GrAdd } from 'react-icons/gr';
+import { HiMinus } from 'react-icons/hi';
 import './Styles.css';
 
-const Button = () => {
+const Button = ({ onClick, showAddTask }) => {
   return (
-    <button
-      //   onClick={onClick}
-      className="btn"
-    >
-      <GrAdd className="gr-add" />
+    <button onClick={onClick} className="btn">
+      {showAddTask ? (
+        <HiMinus className="hi-minus" />
+      ) : (
+        <GrAdd className="gr-add" />
+      )}
     </button>
   );
 };

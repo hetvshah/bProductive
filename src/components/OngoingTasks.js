@@ -19,12 +19,13 @@ const OngoingTasks = ({ ongoingTasks }) => {
       <div>
         <h3>
           {/* <input type="checkbox" /> */}
-          {task.todo}
+          {task.text}
         </h3>
-        <p>{task.notes}</p>
+        <p>Due Date: {task.day}</p>
+        <p>Notes: {task.notes}</p>
       </div>
 
-      <div className="times">15m / 30m</div>
+      <div className="times">{task.estimate}</div>
     </div>
   ));
 

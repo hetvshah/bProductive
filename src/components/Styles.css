@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: row;
   font-size: 1.5vw;
+  margin: 0;
   margin-top: 1.5vw;
 }
 
@@ -63,13 +64,13 @@ u:hover {
 
 .times {
   text-align: center;
-  padding: 40px 0;
+  padding: 1vw 0;
   margin-left: auto;
   margin-right: 0;
   font-style: italic;
   font-weight: 200;
   color: #2c2c2c;
-  font-size: 1.1vw;
+  font-size: 1vw;
 }
 
 .task-btn {
@@ -87,6 +88,19 @@ u:hover {
   margin-right: 0;
 }
 
+.btn:focus {
+  outline: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:hover {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
 .gr-add path {
   stroke: gray;
 }
@@ -98,6 +112,20 @@ u:hover {
 }
 
 .gr-add:hover {
+  opacity: 0.5;
+}
+
+.hi-minus path {
+  stroke: gray;
+}
+
+.hi-minus {
+  margin: 0 0.5vw;
+  height: 1.5em;
+  width: 1.5em;
+}
+
+.hi-minus:hover {
   opacity: 0.5;
 }
 
@@ -116,7 +144,7 @@ u:hover {
 
 .form-control label {
   display: block;
-  font-size: 1.2vw;
+  font-size: 1vw;
 }
 
 .form-control input {
@@ -124,7 +152,7 @@ u:hover {
   height: 40px;
   margin: 1vw 0;
   padding: 3px 7px;
-  font-size: 1.2vw;
+  font-size: 1vw;
 }
 
 .form-control textarea {
@@ -132,7 +160,7 @@ u:hover {
   height: 40px;
   margin: 1vw 0;
   padding: 3px 7px;
-  font-size: 1.2vw;
+  font-size: 1vw;
   font-family: inherit;
 }
 
@@ -145,7 +173,7 @@ u:hover {
 
 .form-control-check label {
   flex: 1;
-  font-size: 1.1vw;
+  font-size: 1vw;
 }
 
 .form-control-check input {
