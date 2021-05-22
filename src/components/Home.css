@@ -1,0 +1,34 @@
+.header {
+  width: 100vw;
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.75vw;
+  justify-content: space-between;
+  margin-top: 1.5vw;
+}
+
+.topLinks {
+  text-align: right;
+  /* margin-left: auto; */
+  margin-right: 3.5vw;
+}
+
+u {
+  margin: 15px;
+  color: black;
+}
+
+u:hover {
+  color: #6600cc;
+}
+
+.header2 {
+  width: 100vw;
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.3vw;
+  justify-content: space-between;
+  margin: 0;
+}
