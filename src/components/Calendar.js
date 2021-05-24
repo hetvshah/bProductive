@@ -1,7 +1,12 @@
+import './Styles.css';
+
 const Calendar = () => {
   return (
-    <div className="header">
-      <p style={{ marginLeft: '7.5vw' }}>Calendar</p>
+    <div>
+      {/* <p style={{ marginLeft: '7.5vw' }}>Calendar</p> */}
+      <div className="header">
+        <p>Calendar</p>
+      </div>
     </div>
   );
 };

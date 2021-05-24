@@ -28,17 +28,57 @@ const Home = () => {
     },
     {
       text: 'Search for apartments.',
-      day: 'June 15th at noon',
+      day: '',
       estimate: '3hr',
       notes: '',
-      displayTask: false,
+      displayTask: true,
       displayCalendar: true,
     },
   ]);
 
-  const addTask = (task) => {
+  const [completedTasks, setCompletedTasks] = useState([
+    {
+      text: 'Call mom. ',
+      day: '',
+      estimate: '1hr',
+      notes: 'Ask about trip to NYC.',
+      displayTask: true,
+      displayCalendar: true,
+    },
+    {
+      text: 'Call dad. ',
+      day: '',
+      estimate: '2hr',
+      notes: 'Buy textbooks.',
+      displayTask: true,
+      displayCalendar: true,
+    },
+  ]);
+
+  const addOngoingTask = (task) => {
     setOngoingTasks([...ongoingTasks, task]);
   };
+
+  const moveOngoingTask = (task) => {
+    setOngoingTasks(ongoingTasks.filter((todo) => todo.text !== task.text));
+    deleteOngoingTask(task);
+  };
+
+  const moveCompleteTask = (task) => {
+    addOngoingTask(task);
+    deleteCompletedTask(task);
+  };
+
+  const deleteOngoingTask = (task) => {
+    setOngoingTasks(ongoingTasks.filter((todo) => todo.text !== task.text));
+  };
+
+  const deleteCompletedTask = (task) => {
+    setCompletedTasks(completedTasks.filter((todo) => todo.text !== task.text));
+  };
+
+  const timeElapsed = Date.now();
+  const today = new Date(timeElapsed);
 
   return (
     <div>
@@ -56,7 +96,7 @@ const Home = () => {
         </div>
       </div>
       <p className="header" style={{ fontSize: '1.25vw', marginTop: '2.5vw' }}>
-        📅 Today is Friday, May 21st. Here is your to-do list, good luck!
+        📅 Today is {today.toDateString()}. Here is your to-do list!
       </p>
 
       <div className="task-btn">
@@ -67,11 +107,27 @@ const Home = () => {
         />
       </div>
 
-      {showAddTask && <AddTask onAdd={addTask} />}
+      {showAddTask && <AddTask onAdd={addOngoingTask} />}
+      {ongoingTasks.length > 0 ? (
+        <OngoingTasks
+          ongoingTasks={ongoingTasks}
+          onMove={moveOngoingTask}
+          onDelete={deleteOngoingTask}
+        />
+      ) : (
+        'No tasks to show.'
+      )}
 
-      <OngoingTasks ongoingTasks={ongoingTasks} />
-      <h2 style={{ padding: '1vw 0' }}>Completed Tasks</h2>
-      <CompletedTasks />
+      <h2 style={{ paddingTop: '1vw' }}>Completed Tasks</h2>
+      {completedTasks.length > 0 ? (
+        <CompletedTasks
+          completedTasks={completedTasks}
+          onMove={moveCompleteTask}
+          onDelete={deleteCompletedTask}
+        />
+      ) : (
+        'No tasks to show.'
+      )}
     </div>
   );
 };

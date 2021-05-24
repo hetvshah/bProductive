@@ -1,35 +1,39 @@
-const OngoingTasks = ({ ongoingTasks }) => {
-  // const ongoingTasks = [
-  //   {
-  //     todo: 'Finish part 7 of CIS 121 programming. ',
-  //     notes: 'Make sure to pay attention to runtimes.',
-  //   },
-  //   {
-  //     todo: 'Respond to emails.',
-  //     notes: 'Specifically John Doe and research mentor.',
-  //   },
-  //   {
-  //     todo: 'Search for apartments.',
-  //     notes: '',
-  //   },
-  // ];
+import { GrCheckmark } from 'react-icons/gr';
+import { AiOutlineEdit } from 'react-icons/ai';
+import { BsFillTrashFill } from 'react-icons/bs';
+import './Styles.css';
 
-  const listOngoingTasks = ongoingTasks.map((task) => (
-    <div className="todo">
-      <div>
-        <h3>
-          {/* <input type="checkbox" /> */}
-          {task.text}
-        </h3>
-        <p>Due Date: {task.day}</p>
-        <p>Notes: {task.notes}</p>
+const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
+  const filteredTasks = ongoingTasks.filter((task) => task.displayTask);
+
+  if (filteredTasks.length > 0) {
+    const listOngoingTasks = filteredTasks.map((task) => (
+      <div className="todo">
+        <div>
+          <h3>
+            {/* <input type="checkbox" /> */}
+            {task.text}
+          </h3>
+          <p>{task.day === '' ? '' : 'Due Date: ' + task.day}</p>
+          <p>{task.notes === '' ? '' : 'Notes: ' + task.notes}</p>
+        </div>
+
+        <div className="times">{task.estimate}</div>
+        <div className="todo-icons">
+          <GrCheckmark className="ongoing-task" onClick={() => onMove(task)} />
+          <AiOutlineEdit className="ongoing-task" />
+          <BsFillTrashFill
+            className="ongoing-task trash"
+            onClick={() => onDelete(task)}
+          />
+        </div>
       </div>
+    ));
 
-      <div className="times">{task.estimate}</div>
-    </div>
-  ));
+    return <>{listOngoingTasks}</>;
+  }
 
-  return <>{listOngoingTasks}</>;
+  return 'No tasks to show.';
 };
 
 export default OngoingTasks;

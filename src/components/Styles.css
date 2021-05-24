@@ -26,12 +26,13 @@ u:hover {
 .todo {
   background: #eee8f6;
   border-radius: 25px;
-  margin: 15px 0 15px 0;
+  margin: 0 0 1.5vw 0;
   padding: 10px 45px;
   /* margin-left: 7.5vw; */
   /* margin-right: 7.5vw; */
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 
 .todo:hover {
@@ -39,34 +40,17 @@ u:hover {
 }
 
 .todo-complete {
-  opacity: 0.5;
+  /* opacity: 0.7; */
   text-decoration: line-through;
+  margin: 0 0 1.5vw 0;
 }
-
-/* .todo h3 {
-  align-items: center;
-  justify-content: space-between;
-  font-size: 1.2vw;
-}
-
-.todo p {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 1vw;
-}
-
-.todo input {
-  width: 1vw;
-  height: 1vw;
-  margin-right: 25px;
-} */
 
 .times {
   text-align: center;
   padding: 1vw 0;
   margin-left: auto;
   margin-right: 0;
+  margin-bottom: 3vw;
   font-style: italic;
   font-weight: 200;
   color: #2c2c2c;
@@ -113,6 +97,7 @@ u:hover {
 
 .gr-add:hover {
   opacity: 0.5;
+  cursor: pointer;
 }
 
 .hi-minus path {
@@ -188,4 +173,44 @@ u:hover {
   height: 5vh;
   border-radius: 1vw;
   margin-top: 2vw;
+}
+
+.ongoing-task {
+  height: 1.3vw;
+  width: 1.3vw;
+  padding: 0.25vw;
+}
+
+.ongoing-task:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.ongoing-task polyline:hover {
+  stroke: red;
+  cursor: pointer;
+}
+
+.trash {
+  height: 1.2vw;
+  width: 1.2vw;
+}
+
+.todo-icons {
+  display: inline-block;
+  margin: 0 0.5vw 0.5vw 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.im-undo {
+  height: 1.1vw;
+  width: 1.1vw;
+  padding: 0.25vw;
+}
+
+.im-undo:hover {
+  color: red;
+  cursor: pointer;
 }
