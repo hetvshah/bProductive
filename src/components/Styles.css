@@ -85,6 +85,20 @@ u:hover {
   cursor: pointer;
 }
 
+.delete {
+  background: black;
+  color: white;
+  width: 9vw;
+  border-radius: 1vw;
+  margin-top: 1.2vw;
+  margin-bottom: 1vw;
+  margin-right: 1vw;
+}
+
+.delete:hover {
+  opacity: 45%;
+}
+
 .gr-add path {
   stroke: gray;
 }
@@ -213,4 +227,12 @@ u:hover {
 .im-undo:hover {
   color: red;
   cursor: pointer;
+}
+
+.rbc-calendar {
+  height: 500px !important;
+}
+
+.rbc-toolbar {
+  margin-top: 3vw;
 }

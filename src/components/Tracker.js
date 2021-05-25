@@ -1,7 +1,12 @@
+import Header from './Header';
+
 const Tracker = () => {
   return (
-    <div className="header">
-      <p>Time Tracker</p>
+    <div>
+      <Header />
+      <div className="header">
+        <p>Time Tracker</p>
+      </div>
     </div>
   );
 };

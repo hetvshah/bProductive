@@ -10,10 +10,7 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
     const listOngoingTasks = filteredTasks.map((task) => (
       <div className="todo">
         <div>
-          <h3>
-            {/* <input type="checkbox" /> */}
-            {task.text}
-          </h3>
+          <h3>{task.text}</h3>
           <p>{task.day === '' ? '' : 'Due Date: ' + task.day}</p>
           <p>{task.notes === '' ? '' : 'Notes: ' + task.notes}</p>
         </div>

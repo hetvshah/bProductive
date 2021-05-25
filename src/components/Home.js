@@ -1,7 +1,7 @@
 import './Styles.css';
-import { Link } from 'react-router-dom';
-import Button from './Button';
+import Button from './AddButton';
 import OngoingTasks from './OngoingTasks';
+import Header from './Header';
 import CompletedTasks from './CompletedTasks';
 import AddTask from './AddTask';
 import { useState } from 'react';
@@ -82,23 +82,10 @@ const Home = () => {
 
   return (
     <div>
-      <div className="header">
-        <p>👋 Hi Hetvi!</p>
-        <div className="topLinks">
-          <p>
-            <Link to="/calendar">
-              <u>Calendar</u>
-            </Link>
-            <Link to="/tracker">
-              <u>Time Tracker</u>
-            </Link>
-          </p>
-        </div>
-      </div>
-      <p className="header" style={{ fontSize: '1.25vw', marginTop: '2.5vw' }}>
+      <Header />
+      <p style={{ fontSize: '1.25vw', marginTop: '2.5vw' }}>
         📅 Today is {today.toDateString()}. Here is your to-do list!
       </p>
-
       <div className="task-btn">
         <h2 style={{ padding: '0 0 0.25vw 0' }}>Ongoing Tasks</h2>
         <Button
@@ -118,7 +105,13 @@ const Home = () => {
         'No tasks to show.'
       )}
 
-      <h2 style={{ paddingTop: '1vw' }}>Completed Tasks</h2>
+      <div className="task-btn">
+        <h2 style={{ padding: '0 0 0.25vw 0' }}>Completed Tasks</h2>
+        <button className="btn delete" onClick={() => setCompletedTasks([])}>
+          Delete All
+        </button>
+      </div>
+
       {completedTasks.length > 0 ? (
         <CompletedTasks
           completedTasks={completedTasks}
