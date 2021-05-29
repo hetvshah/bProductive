@@ -264,3 +264,9 @@ u:hover {
 .rbc-event {
   background-color: #9c50b6 !important;
 }
+
+.react-datetime-picker__wrapper {
+  margin-top: 0.8vw;
+  background-color: white;
+  font-size: 1vw;
+}

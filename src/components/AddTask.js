@@ -3,15 +3,16 @@ import DateTimePicker from 'react-datetime-picker';
 
 const AddTask = ({ onAdd }) => {
   const [text, setText] = useState('');
-  const [day, setDay] = useState('');
+  const [day, setDay] = useState(new Date());
   const [estimate, setEstimate] = useState('');
   const [notes, setNotes] = useState('');
   const [displayTask, setDisplayTask] = useState(false);
   const [displayCalendar, setDisplayCalendar] = useState(false);
-  const [value, onChange] = useState(new Date());
+  // const [value, onChange] = useState(new Date());
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log({ text, day, notes, displayTask, displayCalendar });
     onAdd({ text, day, notes, displayTask, displayCalendar });
     setText('');
     setDay('');
@@ -33,10 +34,15 @@ const AddTask = ({ onAdd }) => {
             onChange={(e) => setText(e.target.value)}
           />
         </div>
-        <div className="form-control">
-          <label>Due Day</label>
+        <div>
+          <label style={{ fontSize: '1vw' }}>Start Day</label>
           <div>
-            <DateTimePicker onChange={onChange} value={value} />
+            <DateTimePicker
+              style={{ marginTop: '200px' }}
+              // onChange={onChange}
+              value={day}
+              onChange={(e) => setDay(e.target.value)}
+            />
           </div>
           {/* <input
             type="text"
@@ -45,7 +51,6 @@ const AddTask = ({ onAdd }) => {
             onChange={(e) => setDay(e.target.value)}
           /> */}
         </div>
-
         <div className="form-control">
           <label>Estimated Time</label>
           <input
@@ -55,7 +60,6 @@ const AddTask = ({ onAdd }) => {
             onChange={(e) => setEstimate(e.target.value)}
           />
         </div>
-
         <div className="form-control">
           <label>Notes (if any)</label>
           <textarea
@@ -67,7 +71,6 @@ const AddTask = ({ onAdd }) => {
             onChange={(e) => setNotes(e.target.value)}
           />
         </div>
-
         <div className="form-control-check">
           <label>Show on Task List</label>
           <input
@@ -86,7 +89,6 @@ const AddTask = ({ onAdd }) => {
             onChange={(e) => setDisplayCalendar(e.currentTarget.checked)}
           />
         </div>
-
         <input type="submit" value="Save Task" className="btn btn-block" />
       </div>
     </form>
