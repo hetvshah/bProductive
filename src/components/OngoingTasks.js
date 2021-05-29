@@ -10,7 +10,7 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
     const listOngoingTasks = filteredTasks.map((task) => (
       <div className="todo">
         <div>
-          <h3>{task.text}</h3>
+          <h3>{task.title}</h3>
           <p>{task.day === '' ? '' : 'Due Date: ' + task.day}</p>
           <p>{task.notes === '' ? '' : 'Notes: ' + task.notes}</p>
         </div>
@@ -18,7 +18,7 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
         <div className="times">{task.estimate}</div>
         <div className="todo-icons">
           <GrCheckmark className="ongoing-task" onClick={() => onMove(task)} />
-          <AiOutlineEdit className="ongoing-task" />
+          {/* <AiOutlineEdit className="ongoing-task" /> */}
           <BsFillTrashFill
             className="ongoing-task trash"
             onClick={() => onDelete(task)}

@@ -7,9 +7,9 @@ const Calendar = () => {
     <div>
       <Header />
       {/* <p style={{ marginLeft: '7.5vw' }}>Calendar</p> */}
-      <div className="header">
+      {/* <div className="header">
         <p className="calendar">Calendar</p>
-      </div>
+      </div> */}
       <MyCalendar />
     </div>
   );

@@ -5,7 +5,7 @@ const CompletedTasks = ({ completedTasks, onMove, onDelete }) => {
   const listCompletedTasks = completedTasks.map((task) => (
     <div className="todo todo-complete">
       <div>
-        <h3>{task.text}</h3>
+        <h3>{task.title}</h3>
         <p> {task.day === '' ? '' : 'Due Date: ' + task.day}</p>
         <p>{task.notes === '' ? '' : 'Notes: ' + task.notes}</p>
       </div>

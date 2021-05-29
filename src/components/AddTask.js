@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import DateTimePicker from 'react-datetime-picker';
 
 const AddTask = ({ onAdd }) => {
   const [text, setText] = useState('');
@@ -7,16 +8,17 @@ const AddTask = ({ onAdd }) => {
   const [notes, setNotes] = useState('');
   const [displayTask, setDisplayTask] = useState(false);
   const [displayCalendar, setDisplayCalendar] = useState(false);
+  const [value, onChange] = useState(new Date());
 
   const onSubmit = (e) => {
     e.preventDefault();
     onAdd({ text, day, notes, displayTask, displayCalendar });
-    setText('')
-    setDay('')
-    setEstimate('')
-    setNotes('')
-    setDisplayTask(false)
-    setDisplayCalendar(false)
+    setText('');
+    setDay('');
+    setEstimate('');
+    setNotes('');
+    setDisplayTask(false);
+    setDisplayCalendar(false);
   };
 
   return (
@@ -32,13 +34,16 @@ const AddTask = ({ onAdd }) => {
           />
         </div>
         <div className="form-control">
-          <label>Due Day & Time</label>
-          <input
+          <label>Due Day</label>
+          <div>
+            <DateTimePicker onChange={onChange} value={value} />
+          </div>
+          {/* <input
             type="text"
             placeholder="add day & time"
             value={day}
             onChange={(e) => setDay(e.target.value)}
-          />
+          /> */}
         </div>
 
         <div className="form-control">

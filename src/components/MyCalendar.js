@@ -1,22 +1,24 @@
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
-import './Styles.css'
+import './Styles.css';
 const localizer = momentLocalizer(moment);
 
-// const myEventsList = Event [{
-//   title: 'string',
-//   start: "2020-09-14",
-//   end: "2020-09-15",
-//   allDay: true,
-//   resource: "false",
-// }]
+const myEventsList = [
+  {
+    id: 11.5,
+    title: 'Lunch',
+    start: new Date(2021, 5, 12, 12, 0, 0, 0),
+    end: new Date(2021, 5, 12, 13, 0, 0, 0),
+    notes: 'Power lunch',
+  },
+];
 
 const MyCalendar = (props) => (
   <div>
     <Calendar
       localizer={localizer}
-      events={[]}
+      events={myEventsList}
       startAccessor="start"
       endAccessor="end"
     />

@@ -20,7 +20,7 @@ u {
 }
 
 u:hover {
-  color: #cc99ff;
+  color: #9c50b6;
 }
 
 .todo {
@@ -230,9 +230,37 @@ u:hover {
 }
 
 .rbc-calendar {
-  height: 500px !important;
+  height: 60vw !important;
+  margin-bottom: 3vw;
 }
 
 .rbc-toolbar {
-  margin-top: 3vw;
+  margin-top: 4.5vw;
+  margin-bottom: 2vw !important;
+}
+
+.rbc-today {
+  background-color: #9c50b6 !important;
+  opacity: 30%;
+}
+
+.rbc-off-range-bg {
+  background: #05050510 !important;
+}
+
+.rbc-toolbar button.rbc-active {
+  background: #05050510 !important;
+}
+
+.rbc-toolbar-label {
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+
+.rbc-row-segment .rbc-event-content {
+  background: #9c50b6;
+}
+
+.rbc-event {
+  background-color: #9c50b6 !important;
 }

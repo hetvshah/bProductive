@@ -11,7 +11,7 @@ const Home = () => {
 
   const [ongoingTasks, setOngoingTasks] = useState([
     {
-      text: 'Finish part 7 of CIS 121 programming. ',
+      title: 'Finish part 7 of CIS 121 programming. ',
       day: 'Feb 7th at 1:30 pm ',
       estimate: '15m',
       notes: 'Make sure to pay attention to runtimes. ',
@@ -19,7 +19,7 @@ const Home = () => {
       displayCalendar: true,
     },
     {
-      text: 'Respond to emails.',
+      title: 'Respond to emails.',
       day: 'Feb 21st at midnight',
       estimate: '2m',
       notes: 'Specifically John Doe and research mentor.',
@@ -27,7 +27,7 @@ const Home = () => {
       displayCalendar: false,
     },
     {
-      text: 'Search for apartments.',
+      title: 'Search for apartments.',
       day: '',
       estimate: '3hr',
       notes: '',
@@ -38,7 +38,7 @@ const Home = () => {
 
   const [completedTasks, setCompletedTasks] = useState([
     {
-      text: 'Call mom. ',
+      title: 'Call mom. ',
       day: '',
       estimate: '1hr',
       notes: 'Ask about trip to NYC.',
@@ -46,7 +46,7 @@ const Home = () => {
       displayCalendar: true,
     },
     {
-      text: 'Call dad. ',
+      title: 'Call dad. ',
       day: '',
       estimate: '2hr',
       notes: 'Buy textbooks.',
@@ -60,7 +60,7 @@ const Home = () => {
   };
 
   const moveOngoingTask = (task) => {
-    setOngoingTasks(ongoingTasks.filter((todo) => todo.text !== task.text));
+    setOngoingTasks(ongoingTasks.filter((todo) => todo.title !== task.title));
     deleteOngoingTask(task);
   };
 
@@ -70,11 +70,13 @@ const Home = () => {
   };
 
   const deleteOngoingTask = (task) => {
-    setOngoingTasks(ongoingTasks.filter((todo) => todo.text !== task.text));
+    setOngoingTasks(ongoingTasks.filter((todo) => todo.title !== task.title));
   };
 
   const deleteCompletedTask = (task) => {
-    setCompletedTasks(completedTasks.filter((todo) => todo.text !== task.text));
+    setCompletedTasks(
+      completedTasks.filter((todo) => todo.title !== task.title)
+    );
   };
 
   const timeElapsed = Date.now();
