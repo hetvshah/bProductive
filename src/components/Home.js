@@ -4,63 +4,25 @@ import OngoingTasks from './OngoingTasks';
 import Header from './Header';
 import CompletedTasks from './CompletedTasks';
 import AddTask from './AddTask';
-import { useState } from 'react';
 
-const Home = () => {
-  const [showAddTask, setAddTask] = useState(false);
-
-  const [ongoingTasks, setOngoingTasks] = useState([
-    {
-      title: 'Finish part 7 of CIS 121 programming. ',
-      day: 'Feb 7th at 1:30 pm ',
-      estimate: '15m',
-      notes: 'Make sure to pay attention to runtimes. ',
-      displayTask: true,
-      displayCalendar: true,
-    },
-    {
-      title: 'Respond to emails.',
-      day: 'Feb 21st at midnight',
-      estimate: '2m',
-      notes: 'Specifically John Doe and research mentor.',
-      displayTask: true,
-      displayCalendar: false,
-    },
-    {
-      title: 'Search for apartments.',
-      day: '',
-      estimate: '3hr',
-      notes: '',
-      displayTask: true,
-      displayCalendar: true,
-    },
-  ]);
-
-  const [completedTasks, setCompletedTasks] = useState([
-    {
-      title: 'Call mom. ',
-      day: '',
-      estimate: '1hr',
-      notes: 'Ask about trip to NYC.',
-      displayTask: true,
-      displayCalendar: true,
-    },
-    {
-      title: 'Call dad. ',
-      day: '',
-      estimate: '2hr',
-      notes: 'Buy textbooks.',
-      displayTask: true,
-      displayCalendar: true,
-    },
-  ]);
-
+const Home = ({
+  ongoingTasks,
+  setOngoingTasks,
+  completedTasks,
+  setCompletedTasks,
+  showAddTask,
+  setAddTask,
+}) => {
   const addOngoingTask = (task) => {
     setOngoingTasks([...ongoingTasks, task]);
   };
 
+  const addCompletedTask = (task) => {
+    setCompletedTasks([...completedTasks, task]);
+  };
+
   const moveOngoingTask = (task) => {
-    setOngoingTasks(ongoingTasks.filter((todo) => todo.title !== task.title));
+    addCompletedTask(task);
     deleteOngoingTask(task);
   };
 

@@ -6,8 +6,8 @@ const localizer = momentLocalizer(moment);
 
 const myEventsList = [
   {
-    id: 11.5,
     title: 'Lunch',
+    allDay: true,
     start: new Date(2021, 5, 12, 12, 0, 0, 0),
     end: new Date(2021, 5, 12, 13, 0, 0, 0),
     notes: 'Power lunch',
