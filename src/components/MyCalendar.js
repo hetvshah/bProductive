@@ -4,24 +4,18 @@ import moment from 'moment';
 import './Styles.css';
 const localizer = momentLocalizer(moment);
 
-const myEventsList = [
-  {
-    title: 'Lunch',
-    allDay: true,
-    start: new Date(2021, 5, 12, 12, 0, 0, 0),
-    end: new Date(2021, 5, 12, 13, 0, 0, 0),
-    notes: 'Power lunch',
-  },
-];
+const MyCalendar = ({ events }) => {
+  const filteredEvents = events.filter((event) => event.displayCalendar);
 
-const MyCalendar = (props) => (
-  <div>
-    <Calendar
-      localizer={localizer}
-      events={myEventsList}
-      startAccessor="start"
-      endAccessor="end"
-    />
-  </div>
-);
+  return (
+    <div>
+      <Calendar
+        localizer={localizer}
+        events={filteredEvents}
+        startAccessor="start"
+        endAccessor="end"
+      />
+    </div>
+  );
+};
 export default MyCalendar;

@@ -2,7 +2,7 @@ import './Styles.css';
 import MyCalendar from './MyCalendar';
 import Header from './Header';
 
-const Calendar = () => {
+const Calendar = ({ events }) => {
   return (
     <div>
       <Header />
@@ -10,7 +10,7 @@ const Calendar = () => {
       {/* <div className="header">
         <p className="calendar">Calendar</p>
       </div> */}
-      <MyCalendar />
+      <MyCalendar events={events} />
     </div>
   );
 };

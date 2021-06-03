@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
+import DatePicker from 'react-date-picker';
 
 const AddTask = ({ onAdd }) => {
   const [title, setTitle] = useState('');
-  const [allDay, setAllDay] = useState(false);
-  const [day, setDay] = useState(new Date());
+  const [specificTime, setSpecificTime] = useState(false);
+  const [start, setStart] = useState(new Date());
+  const [end, setEnd] = useState(new Date());
   const [estimate, setEstimate] = useState('');
   const [notes, setNotes] = useState('');
   const [displayTask, setDisplayTask] = useState(false);
@@ -13,27 +15,20 @@ const AddTask = ({ onAdd }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log({
-      title,
-      allDay,
-      day,
-      estimate,
-      notes,
-      displayTask,
-      displayCalendar,
-    });
     onAdd({
       title,
-      allDay,
-      day,
+      specificTime,
+      start,
+      end,
       estimate,
       notes,
       displayTask,
       displayCalendar,
     });
     setTitle('');
-    setAllDay(false);
-    setDay(new Date());
+    setSpecificTime(false);
+    setStart(new Date());
+    setEnd(new Date());
     setEstimate('');
     setNotes('');
     setDisplayTask(false);
@@ -43,7 +38,7 @@ const AddTask = ({ onAdd }) => {
   return (
     <form className="add-form" onSubmit={onSubmit}>
       <div className="add-form-child">
-        <div className="form-control task">
+        <div className="form-control-task">
           <label style={{ marginBottom: '1vw' }}>Task</label>
           <input
             type="text"
@@ -53,37 +48,64 @@ const AddTask = ({ onAdd }) => {
           />
         </div>
         <div className="form-control-check">
-          <label>All Day</label>
+          <label>Specific Time</label>
           <input
             type="checkbox"
-            value={displayCalendar}
-            checked={displayCalendar}
-            onChange={(e) => setDisplayCalendar(e.currentTarget.checked)}
+            value={specificTime}
+            checked={specificTime}
+            onChange={(e) => setSpecificTime(e.currentTarget.checked)}
           />
         </div>
-        <div className="form-control">
-          <label style={{ marginBottom: '1vw' }}>Start Time & Day</label>
+
+        {specificTime ? (
           <div>
-            <DateTimePicker
-              style={{ marginTop: '200px' }}
-              onChange={setDay}
-              value={day}
-              // onChange={(e) => setDay(e.target.value)}
-            />
+            <div className="datetime-picker">
+              <label style={{ marginBottom: '1vw' }}>Start Time & Day</label>
+              <div>
+                <DateTimePicker
+                  onChange={setStart}
+                  value={start}
+                  // onChange={(e) => setDay(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="datetime-picker">
+              <label style={{ marginBottom: '1vw' }}>End Time & Day</label>
+              <div>
+                <DateTimePicker
+                  onChange={setEnd}
+                  value={end}
+                  // onChange={(e) => setDay(e.target.value)}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="form-control">
-          <label style={{ marginBottom: '1vw' }}>End Time & Day</label>
+        ) : (
           <div>
-            <DateTimePicker
-              style={{ marginTop: '200px' }}
-              onChange={setDay}
-              value={day}
-              // onChange={(e) => setDay(e.target.value)}
-            />
+            <div className="datetime-picker">
+              <label style={{ marginBottom: '1vw' }}>Start Day</label>
+              <div>
+                <DatePicker
+                  onChange={setStart}
+                  value={start}
+                  // onChange={(e) => setDay(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="datetime-picker">
+              <label style={{ marginBottom: '1vw' }}>End Day</label>
+              <div>
+                <DatePicker
+                  onChange={setEnd}
+                  value={end}
+                  // onChange={(e) => setDay(e.target.value)}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="form-control">
+        )}
+
+        <div className="form-control-task">
           <label style={{ marginBottom: '1vw' }}>Estimated Time</label>
           <input
             type="text"
@@ -92,7 +114,7 @@ const AddTask = ({ onAdd }) => {
             onChange={(e) => setEstimate(e.target.value)}
           />
         </div>
-        <div className="form-control">
+        <div className="form-control-task">
           <label style={{ marginBottom: '1vw' }}>Notes (if any)</label>
           <textarea
             rows="10"
@@ -121,7 +143,7 @@ const AddTask = ({ onAdd }) => {
             onChange={(e) => setDisplayCalendar(e.currentTarget.checked)}
           />
         </div>
-        <input type="submit" value="Save Task" className="btn btn-block" />
+        <input type="submit" value="Save Task" className="home-btn btn-block" />
       </div>
     </form>
   );

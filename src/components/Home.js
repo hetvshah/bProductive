@@ -4,6 +4,8 @@ import OngoingTasks from './OngoingTasks';
 import Header from './Header';
 import CompletedTasks from './CompletedTasks';
 import AddTask from './AddTask';
+import { useAuth } from '../components/contexts/AuthContext';
+import { Link, useHistory } from 'react-router-dom';
 
 const Home = ({
   ongoingTasks,
@@ -13,6 +15,9 @@ const Home = ({
   showAddTask,
   setAddTask,
 }) => {
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
+
   const addOngoingTask = (task) => {
     setOngoingTasks([...ongoingTasks, task]);
   };
@@ -44,8 +49,26 @@ const Home = ({
   const timeElapsed = Date.now();
   const today = new Date(timeElapsed);
 
+  async function handleLogout() {
+    await logout();
+    history.push('/login');
+  }
+
   return (
     <div>
+      <label>
+        <strong>Email: </strong> {currentUser.email}
+      </label>
+      <button type="submit">
+        <Link to="/update-profile" style={{ textDecoration: 'none' }}>
+          Update Profile
+        </Link>
+      </button>
+
+      <button type="submit" onClick={handleLogout}>
+        Log Out
+      </button>
+
       <Header />
       <p style={{ fontSize: '1.25vw', marginTop: '2.5vw' }}>
         📅 Today is {today.toDateString()}. Here is your to-do list!
@@ -71,7 +94,10 @@ const Home = ({
 
       <div className="task-btn">
         <h2 style={{ padding: '0 0 0.25vw 0' }}>Completed Tasks</h2>
-        <button className="btn delete" onClick={() => setCompletedTasks([])}>
+        <button
+          className="home-btn delete"
+          onClick={() => setCompletedTasks([])}
+        >
           Delete All
         </button>
       </div>

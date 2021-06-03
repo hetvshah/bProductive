@@ -4,7 +4,7 @@ import './Styles.css';
 
 const Button = ({ onClick, showAddTask }) => {
   return (
-    <button onClick={onClick} className="btn">
+    <button onClick={onClick} className="home-btn">
       {showAddTask ? (
         <HiMinus className="hi-minus" />
       ) : (
