@@ -3333,6 +3333,11 @@ button.bg-dark:focus {
   margin-top: 0.5rem !important;
 }
 
+.mt-3,
+.my-3 {
+  margin-top: 1rem !important;
+}
+
 .mb-4,
 .my-4 {
   margin-bottom: 1.5rem !important;

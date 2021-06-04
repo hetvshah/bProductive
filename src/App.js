@@ -12,6 +12,8 @@ import PrivateRoute from './components/PrivateRoute';
 import './components/Styles.css';
 import './index.css';
 import './components/Auth.css';
+import ForgotPassword from './components/ForgotPassword';
+import UpdateProfile from './components/UpdateProfile';
 
 function App() {
   const [showAddTask, setAddTask] = useState(false);
@@ -74,6 +76,20 @@ function App() {
   return (
     <Router>
       <AuthProvider>
+        {/* update profile page */}
+        <PrivateRoute path="/update-profile">
+          <div style={{ backgroundColor: '#f3efff' }}>
+            <Container
+              className="d-flex align-items-center justify-content-center"
+              style={{ minHeight: '90vh' }}
+            >
+              <div className="w-100" style={{ maxWidth: '450px' }}>
+                <UpdateProfile />
+              </div>
+            </Container>
+          </div>
+        </PrivateRoute>
+
         {/* home page */}
         <PrivateRoute
           exact
@@ -97,12 +113,13 @@ function App() {
           path="/calendar"
           render={(props) => <Calendar events={ongoingTasks} />}
         />
+
         {/* login page */}
         <Route path="/login">
           <div style={{ backgroundColor: '#f3efff' }}>
             <Container
               className="d-flex align-items-center justify-content-center"
-              style={{ minHeight: '100vh' }}
+              style={{ minHeight: '90vh' }}
             >
               <div className="w-100" style={{ maxWidth: '450px' }}>
                 <Login />
@@ -115,10 +132,23 @@ function App() {
           <div style={{ backgroundColor: '#f3efff' }}>
             <Container
               className="d-flex align-items-center justify-content-center"
-              style={{ minHeight: '100vh' }}
+              style={{ minHeight: '90vh' }}
             >
               <div className="w-100" style={{ maxWidth: '450px' }}>
                 <Signup />
+              </div>
+            </Container>
+          </div>
+        </Route>
+        {/* forgot password page */}
+        <Route path="/forgot-password">
+          <div style={{ backgroundColor: '#f3efff' }}>
+            <Container
+              className="d-flex align-items-center justify-content-center"
+              style={{ minHeight: '90vh' }}
+            >
+              <div className="w-100" style={{ maxWidth: '450px' }}>
+                <ForgotPassword />
               </div>
             </Container>
           </div>
