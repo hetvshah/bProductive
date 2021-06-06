@@ -4,6 +4,7 @@ import { useAuth } from './contexts/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
 
 const Signup = () => {
+  const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -38,6 +39,10 @@ const Signup = () => {
           <h2 className="text-center mb-4">Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
+            {/* <Form.Group id="name">
+              <Form.Label>Name</Form.Label>
+              <Form.Control ref={nameRef} required></Form.Control>
+            </Form.Group> */}
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" ref={emailRef} required></Form.Control>

@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useAuth } from '../components/contexts/AuthContext';
 
 const Header = () => {
   //   let homeStyle = { color: 'black' };
@@ -24,8 +25,35 @@ const Header = () => {
   //     trackerStyle = { color: 'pink' };
   //   };
 
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
+
+  async function handleLogout() {
+    await logout();
+    history.push('/login');
+  }
+
   return (
     <div>
+      <div className="auth-buttons">
+        {/* <label>
+        <strong>Email: </strong> {currentUser.email}
+      </label> */}
+        <button
+          type="submit"
+          className="auth-button"
+          onClick={() => {
+            history.push('/update-profile');
+          }}
+        >
+          Update Profile
+        </button>
+
+        <button type="submit" onClick={handleLogout} className="auth-button">
+          Log Out
+        </button>
+      </div>
+
       <div className="header">
         <p>👋 Hi Hetvi!</p>
         <div className="topLinks">

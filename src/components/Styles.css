@@ -5,7 +5,7 @@
   flex-direction: row;
   font-size: 1.5vw;
   margin: 0;
-  margin-top: 1.5vw;
+  margin-top: 2vw;
 }
 
 .topLinks {
@@ -293,4 +293,21 @@ u:hover {
 .react-date-picker__wrapper {
   background-color: white;
   font-size: 1vw;
+}
+
+.auth-buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.auth-button {
+  background-color: #f3efff;
+  border: none;
+  margin: 0.7vw 0.5vw 1vw 0.1vw;
+  color: darkgray;
+}
+
+.auth-button:hover {
+  cursor: pointer;
 }
