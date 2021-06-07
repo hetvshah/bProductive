@@ -4,16 +4,16 @@ import Tracker from './components/Tracker';
 import Calendar from './components/Calendar';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useState } from 'react';
-import Login from './components/Login';
-import Signup from './components/Signup';
+import Login from './components/auth/Login';
+import Signup from './components/auth/Signup';
 import { Container } from 'react-bootstrap';
 import { AuthProvider } from './components/contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import './components/Styles.css';
 import './index.css';
-import './components/Auth.css';
-import ForgotPassword from './components/ForgotPassword';
-import UpdateProfile from './components/UpdateProfile';
+import ForgotPassword from './components/auth/ForgotPassword';
+import UpdateProfile from './components/auth/UpdateProfile';
+import firebase from './components/firebase';
 
 function App() {
   const [showAddTask, setAddTask] = useState(false);

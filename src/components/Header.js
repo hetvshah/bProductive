@@ -26,6 +26,8 @@ const Header = () => {
   //   };
 
   const { currentUser, logout } = useAuth();
+  console.log(currentUser);
+
   const history = useHistory();
 
   async function handleLogout() {

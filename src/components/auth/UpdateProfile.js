@@ -1,14 +1,15 @@
 import { Card, Button, Form, Alert } from 'react-bootstrap';
 import { useRef, useState } from 'react';
-import { useAuth } from './contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
 
 const UpdateProfile = () => {
+  const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
 
-  const { currentUser, updatePassword, updateEmail } = useAuth();
+  const { currentUser, updateName, updatePassword, updateEmail } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -22,6 +23,11 @@ const UpdateProfile = () => {
     const promises = [];
     setLoading(true);
     setError('');
+
+    // if (nameRef.current.value !== currentUser.name) {
+    //   promises.push(updateName(nameRef.current.value));
+    // }
+
     if (emailRef.current.value !== currentUser.email) {
       promises.push(updateEmail(emailRef.current.value));
     }
@@ -51,6 +57,10 @@ const UpdateProfile = () => {
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
+            {/* <Form.Group id="name">
+              <Form.Label>Name</Form.Label>
+              <Form.Control ref={nameRef} required></Form.Control>
+            </Form.Group> */}
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control

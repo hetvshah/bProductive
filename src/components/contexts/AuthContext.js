@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
-import firebase, { auth } from '../firebase';
+import { auth } from '../firebase';
+import firebase from '../firebase';
 
 const AuthContext = React.createContext();
 
@@ -7,22 +8,29 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
-// var database = firebase.database();
-
-// function writeUserData(userId, email, ongoingTasks, completedTasks) {
-//   firebase.database().ref('users/' + userId).set({
-//     email: email,
-//     ongoingTasks: ongoingTasks,
-//     completedTasks: completedTasks,
-//   });
-// }
+function writeUserData(userId, name, email, ongoingTasks, completedTasks) {
+  firebase
+    .database()
+    .ref('users/' + userId)
+    .set({
+      name: name,
+      email: email,
+      ongoingTasks: ongoingTasks,
+      completedTasks: completedTasks,
+    });
+}
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  function signup(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password);
+  function signup(name, email, password) {
+    const promise = auth.createUserWithEmailAndPassword(email, password);
+    promise.then(function (user) {
+      writeUserData(user.user.uid, name, email, [], []);
+    });
+
+    return promise;
   }
 
   function login(email, password) {

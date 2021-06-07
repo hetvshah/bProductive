@@ -1,6 +1,6 @@
 import { Card, Button, Form, Alert } from 'react-bootstrap';
 import { useRef, useState } from 'react';
-import { useAuth } from './contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
 
 const Signup = () => {
@@ -24,7 +24,12 @@ const Signup = () => {
     try {
       setError('');
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      console.log(nameRef.current.value);
+      await signup(
+        nameRef.current.value,
+        emailRef.current.value,
+        passwordRef.current.value
+      );
       history.push('/');
     } catch {
       setError('Failed to create an account');
@@ -39,10 +44,10 @@ const Signup = () => {
           <h2 className="text-center mb-4">Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            {/* <Form.Group id="name">
+            <Form.Group id="name">
               <Form.Label>Name</Form.Label>
               <Form.Control ref={nameRef} required></Form.Control>
-            </Form.Group> */}
+            </Form.Group>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" ref={emailRef} required></Form.Control>
