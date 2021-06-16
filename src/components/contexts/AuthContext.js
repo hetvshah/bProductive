@@ -93,8 +93,6 @@ export function AuthProvider({ children }) {
     return currentUser.updatePassword(password);
   }
 
-  function getOngoingTasks() {}
-
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);

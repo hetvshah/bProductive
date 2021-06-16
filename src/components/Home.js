@@ -19,36 +19,41 @@ const Home = ({
   changeState,
 }) => {
   const { currentUser } = useAuth();
+  let uid = currentUser.uid;
   // const [showAdd, setShowAdd] = useState(false);
 
   const addOngoingTask = (task) => {
     // setOngoingTasks([...ongoingTasks, task]);
 
-    db.ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/ongoingTasks').push().set({
-      title: task.title,
-      specificTime: task.specificTime,
-      start: 'task.start',
-      end: 'task.end',
-      estimate: task.estimate,
-      notes: task.notes,
-      displayTask: task.displayTask,
-      displayCalendar: task.displayCalendar,
-    });
+    db.ref('users/' + uid + '/ongoingTasks')
+      .push()
+      .set({
+        title: task.title,
+        specificTime: task.specificTime,
+        start: 'task.start',
+        end: 'task.end',
+        estimate: task.estimate,
+        notes: task.notes,
+        displayTask: task.displayTask,
+        displayCalendar: task.displayCalendar,
+      });
   };
 
   const addCompletedTask = (task) => {
     // setCompletedTasks([...completedTasks, task]);
 
-    db.ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/completedTasks').push().set({
-      title: task.title,
-      specificTime: task.specificTime,
-      start: 'task.start',
-      end: 'task.end',
-      estimate: task.estimate,
-      notes: task.notes,
-      displayTask: task.displayTask,
-      displayCalendar: task.displayCalendar,
-    });
+    db.ref('users/' + uid + '/completedTasks')
+      .push()
+      .set({
+        title: task.title,
+        specificTime: task.specificTime,
+        start: 'task.start',
+        end: 'task.end',
+        estimate: task.estimate,
+        notes: task.notes,
+        displayTask: task.displayTask,
+        displayCalendar: task.displayCalendar,
+      });
   };
 
   const moveOngoingTask = (task) => {
@@ -69,14 +74,14 @@ const Home = ({
     //     .child(task.title)
     // );
 
-    db.ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/ongoingTasks')
+    db.ref('users/' + uid + '/ongoingTasks')
       .child(task.id)
       .remove();
   };
 
   const deleteCompletedTask = (task) => {
     console.log(task);
-    db.ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/completedTasks')
+    db.ref('users/' + uid + '/completedTasks')
       .child(task.id)
       .remove();
   };
@@ -121,9 +126,7 @@ const Home = ({
             // completedTasks.map((task) => {
             //   deleteCompletedTask(task);
             // });
-            db.ref(
-              'users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/completedTasks'
-            ).remove();
+            db.ref('users/' + uid + '/completedTasks').remove();
           }}
         >
           Delete All

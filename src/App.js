@@ -26,12 +26,6 @@ class App extends React.Component {
     showAddTask: false,
   };
 
-  // const changeState(props) {
-  //   this.setState({
-  //     showAddTask: props,
-  //   });
-  // }
-
   changeState = (props) => {
     this.setState({
       showAddTask: props,
@@ -97,75 +91,65 @@ class App extends React.Component {
   // ]);
 
   componentDidMount() {
+    let user = firebase.auth().currentUser;
+    let uid = user.uid;
     const previousOngoingTasks = this.state.ongoingTasks;
     const previousCompletedTasks = this.state.completedTasks;
-    db.ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/ongoingTasks').on(
-      'child_added',
-      (snap) => {
-        previousOngoingTasks.push({
-          id: snap.key,
-          title: snap.val().title,
-          specificTime: snap.val().specificTime,
-          start: snap.val().start,
-          end: snap.val().end,
-          estimate: snap.val().estimate,
-          notes: snap.val().notes,
-          displayTask: snap.val().displayTask,
-          displayCalendar: snap.val().displayCalendar,
-        });
-        this.setState({
-          ongoingTasks: previousOngoingTasks,
-        });
-      }
-    );
+    db.ref('users/' + uid + '/ongoingTasks').on('child_added', (snap) => {
+      previousOngoingTasks.push({
+        id: snap.key,
+        title: snap.val().title,
+        specificTime: snap.val().specificTime,
+        start: snap.val().start,
+        end: snap.val().end,
+        estimate: snap.val().estimate,
+        notes: snap.val().notes,
+        displayTask: snap.val().displayTask,
+        displayCalendar: snap.val().displayCalendar,
+      });
+      this.setState({
+        ongoingTasks: previousOngoingTasks,
+      });
+    });
 
-    db.ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/completedTasks').on(
-      'child_added',
-      (snap) => {
-        previousCompletedTasks.push({
-          id: snap.key,
-          title: snap.val().title,
-          specificTime: snap.val().specificTime,
-          start: snap.val().start,
-          end: snap.val().end,
-          estimate: snap.val().estimate,
-          notes: snap.val().notes,
-          displayTask: snap.val().displayTask,
-          displayCalendar: snap.val().displayCalendar,
-        });
-        this.setState({
-          completedTasks: previousCompletedTasks,
-        });
-      }
-    );
+    db.ref('users/' + uid + '/completedTasks').on('child_added', (snap) => {
+      previousCompletedTasks.push({
+        id: snap.key,
+        title: snap.val().title,
+        specificTime: snap.val().specificTime,
+        start: snap.val().start,
+        end: snap.val().end,
+        estimate: snap.val().estimate,
+        notes: snap.val().notes,
+        displayTask: snap.val().displayTask,
+        displayCalendar: snap.val().displayCalendar,
+      });
+      this.setState({
+        completedTasks: previousCompletedTasks,
+      });
+    });
 
-    db.ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/ongoingTasks').on(
-      'child_removed',
-      (snap) => {
-        for (var i = 0; i < previousOngoingTasks.length; i++) {
-          if (previousOngoingTasks[i].id === snap.key) {
-            previousOngoingTasks.splice(i, 1);
-          }
+    db.ref('users/' + uid + '/ongoingTasks').on('child_removed', (snap) => {
+      for (var i = 0; i < previousOngoingTasks.length; i++) {
+        if (previousOngoingTasks[i].id === snap.key) {
+          previousOngoingTasks.splice(i, 1);
         }
-        this.setState({
-          ongoingTasks: previousOngoingTasks,
-        });
       }
-    );
+      this.setState({
+        ongoingTasks: previousOngoingTasks,
+      });
+    });
 
-    db.ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/completedTasks').on(
-      'child_removed',
-      (snap) => {
-        for (var i = 0; i < previousCompletedTasks.length; i++) {
-          if (previousCompletedTasks[i].id === snap.key) {
-            previousCompletedTasks.splice(i, 1);
-          }
+    db.ref('users/' + uid + '/completedTasks').on('child_removed', (snap) => {
+      for (var i = 0; i < previousCompletedTasks.length; i++) {
+        if (previousCompletedTasks[i].id === snap.key) {
+          previousCompletedTasks.splice(i, 1);
         }
-        this.setState({
-          completedTasks: previousCompletedTasks,
-        });
       }
-    );
+      this.setState({
+        completedTasks: previousCompletedTasks,
+      });
+    });
   }
 
   render() {
