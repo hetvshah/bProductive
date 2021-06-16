@@ -24,9 +24,9 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
         <div>
           <h3>{task.title}</h3>
           <p>
-            {task.specificTime
+            {/* {task.specificTime
               ? displayDate(task, 'MMMM Do [at] LT')
-              : displayDate(task, 'MMMM Do')}
+              : displayDate(task, 'MMMM Do')} */}
             {/* {task.start === '' && task.end === ''
               ? ''
               : task.start.toDateString() === task.end.toDateString()

@@ -24,9 +24,9 @@ const UpdateProfile = () => {
     setLoading(true);
     setError('');
 
-    // if (nameRef.current.value !== currentUser.name) {
-    //   promises.push(updateName(nameRef.current.value));
-    // }
+    if (nameRef.current.value !== currentUser.name) {
+      promises.push(updateName(nameRef.current.value));
+    }
 
     if (emailRef.current.value !== currentUser.email) {
       promises.push(updateEmail(emailRef.current.value));
@@ -57,10 +57,14 @@ const UpdateProfile = () => {
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            {/* <Form.Group id="name">
+            <Form.Group id="name">
               <Form.Label>Name</Form.Label>
-              <Form.Control ref={nameRef} required></Form.Control>
-            </Form.Group> */}
+              <Form.Control
+                ref={nameRef}
+                required
+                defaultValue={currentUser.displayName}
+              ></Form.Control>
+            </Form.Group>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control

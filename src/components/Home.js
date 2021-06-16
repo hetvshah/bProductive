@@ -4,6 +4,10 @@ import OngoingTasks from './OngoingTasks';
 import Header from './Header';
 import CompletedTasks from './CompletedTasks';
 import AddTask from './AddTask';
+import { useAuth } from '../components/contexts/AuthContext';
+import { db } from '../components/firebase';
+import { useState } from 'react';
+import React from 'react';
 
 const Home = ({
   ongoingTasks,
@@ -12,18 +16,44 @@ const Home = ({
   setCompletedTasks,
   showAddTask,
   setAddTask,
+  changeState,
 }) => {
+  const { currentUser } = useAuth();
+  // const [showAdd, setShowAdd] = useState(false);
+
   const addOngoingTask = (task) => {
-    setOngoingTasks([...ongoingTasks, task]);
+    // setOngoingTasks([...ongoingTasks, task]);
+
+    db.ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/ongoingTasks').push().set({
+      title: task.title,
+      specificTime: task.specificTime,
+      start: 'task.start',
+      end: 'task.end',
+      estimate: task.estimate,
+      notes: task.notes,
+      displayTask: task.displayTask,
+      displayCalendar: task.displayCalendar,
+    });
   };
 
   const addCompletedTask = (task) => {
-    setCompletedTasks([...completedTasks, task]);
+    // setCompletedTasks([...completedTasks, task]);
+
+    db.ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/completedTasks').push().set({
+      title: task.title,
+      specificTime: task.specificTime,
+      start: 'task.start',
+      end: 'task.end',
+      estimate: task.estimate,
+      notes: task.notes,
+      displayTask: task.displayTask,
+      displayCalendar: task.displayCalendar,
+    });
   };
 
   const moveOngoingTask = (task) => {
-    addCompletedTask(task);
     deleteOngoingTask(task);
+    addCompletedTask(task);
   };
 
   const moveCompleteTask = (task) => {
@@ -32,13 +62,22 @@ const Home = ({
   };
 
   const deleteOngoingTask = (task) => {
-    setOngoingTasks(ongoingTasks.filter((todo) => todo.title !== task.title));
+    // setOngoingTasks(ongoingTasks.filter((todo) => todo.title !== task.title));
+    // console.log(
+    //   db
+    //     .ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/ongoingTasks')
+    //     .child(task.title)
+    // );
+
+    db.ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/ongoingTasks')
+      .child(task.id)
+      .remove();
   };
 
   const deleteCompletedTask = (task) => {
-    setCompletedTasks(
-      completedTasks.filter((todo) => todo.title !== task.title)
-    );
+    db.ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/completedTasks')
+      .child(task.id)
+      .remove();
   };
 
   const timeElapsed = Date.now();
@@ -53,7 +92,7 @@ const Home = ({
       <div className="task-btn">
         <h2 style={{ padding: '0 0 0.25vw 0' }}>Ongoing Tasks</h2>
         <Button
-          onClick={() => setAddTask(!showAddTask)}
+          onClick={() => changeState(!showAddTask)}
           showAddTask={showAddTask}
         />
       </div>

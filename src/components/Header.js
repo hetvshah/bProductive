@@ -26,7 +26,6 @@ const Header = () => {
   //   };
 
   const { currentUser, logout } = useAuth();
-  console.log(currentUser);
 
   const history = useHistory();
 
@@ -57,7 +56,7 @@ const Header = () => {
       </div>
 
       <div className="header">
-        <p>👋 Hi Hetvi!</p>
+        <p>👋 Hi {currentUser.displayName}!</p>
         <div className="topLinks">
           <p>
             <Link to="/">

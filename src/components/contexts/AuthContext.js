@@ -8,13 +8,12 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
-function writeUserData(userId, name, email, ongoingTasks, completedTasks) {
+function writeUserData(userId, name, ongoingTasks, completedTasks) {
   firebase
     .database()
     .ref('users/' + userId)
     .set({
       name: name,
-      email: email,
       ongoingTasks: ongoingTasks,
       completedTasks: completedTasks,
     });
@@ -27,8 +26,43 @@ export function AuthProvider({ children }) {
   function signup(name, email, password) {
     const promise = auth.createUserWithEmailAndPassword(email, password);
     promise.then(function (user) {
-      writeUserData(user.user.uid, name, email, [], []);
+      user.user.updateProfile({
+        displayName: name,
+      });
+
+      // console.log(user);
+      writeUserData(
+        user.user.uid,
+        name,
+        email,
+        [
+          {
+            title: 'placeholder',
+            specificTime: true,
+            start: new Date(2015, 5, 21, 20, 10, 0, 0),
+            end: new Date(2015, 5, 21, 20, 10, 0, 0),
+            estimate: '',
+            notes: '',
+            displayTask: true,
+            displayCalendar: true,
+          },
+        ],
+        [
+          {
+            title: 'placeholder',
+            specificTime: true,
+            start: new Date(2015, 5, 21, 20, 10, 0, 0),
+            end: new Date(2015, 5, 21, 20, 10, 0, 0),
+            estimate: '',
+            notes: '',
+            displayTask: true,
+            displayCalendar: true,
+          },
+        ]
+      );
     });
+
+    // await currentUser.reload();
 
     return promise;
   }
@@ -45,6 +79,12 @@ export function AuthProvider({ children }) {
     return auth.sendPasswordResetEmail(email);
   }
 
+  function updateName(name) {
+    return currentUser.updateProfile({
+      displayName: name,
+    });
+  }
+
   function updateEmail(email) {
     return currentUser.updateEmail(email);
   }
@@ -52,6 +92,8 @@ export function AuthProvider({ children }) {
   function updatePassword(password) {
     return currentUser.updatePassword(password);
   }
+
+  function getOngoingTasks() {}
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -70,6 +112,7 @@ export function AuthProvider({ children }) {
     resetPassword,
     updateEmail,
     updatePassword,
+    updateName,
   };
 
   return (
