@@ -75,6 +75,7 @@ const Home = ({
   };
 
   const deleteCompletedTask = (task) => {
+    console.log(task);
     db.ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/completedTasks')
       .child(task.id)
       .remove();
@@ -112,7 +113,18 @@ const Home = ({
         <h2 style={{ padding: '0 0 0.25vw 0' }}>Completed Tasks</h2>
         <button
           className="home-btn delete"
-          onClick={() => setCompletedTasks([])}
+          onClick={() => {
+            // for (var i = 0; i < completedTasks.length; i++) {
+            //   console.log(completedTasks[i]);
+            //   deleteCompletedTask(completedTasks[i]);
+            // }
+            // completedTasks.map((task) => {
+            //   deleteCompletedTask(task);
+            // });
+            db.ref(
+              'users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/completedTasks'
+            ).remove();
+          }}
         >
           Delete All
         </button>
