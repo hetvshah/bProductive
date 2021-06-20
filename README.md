@@ -13,9 +13,9 @@ Built with: React and Firebase
 This was my first time building the frontend and backend of an application and deploying it. I used a lot of resources and followed many tutorials:
 
 * [setup for auth / firebase](https://www.youtube.com/watch?v=PKwu15ldZ7k&t=2352s&ab_channel=WebDevSimplifiedWebDevSimplified)
-* [random] (https://medium.com/firebase-developers/why-is-my-currentuser-null-in-firebase-auth-4701791f74f0) firebase bugs
-* [react-big-calendar] (https://github.com/jquense/react-big-calendar)
-* [date & time picker] (https://projects.wojtekmaj.pl/react-datetime-picker/)
+* [random](https://medium.com/firebase-developers/why-is-my-currentuser-null-in-firebase-auth-4701791f74f0) firebase bugs
+* [react-big-calendar](https://github.com/jquense/react-big-calendar)
+* [date & time picker](https://projects.wojtekmaj.pl/react-datetime-picker/)
 
 ### Key Takeaways
 
