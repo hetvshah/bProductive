@@ -4,7 +4,7 @@ Plan your days and track your productivity with this user-friendly and simplisti
 
 *insert progress image here*
 
-Built with: React and Firebase
+Built with: [React](https://reactjs.org/) and [Firebase](https://firebase.google.com/docs)
 
 ### About
 
