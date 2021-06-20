@@ -2,7 +2,7 @@
 
 Plan your days and track your productivity with this user-friendly and simplisticly designed app! 
 
-* insert progress image here*
+*insert progress image here*
 
 Built with: React and Firebase
 
