@@ -1,6 +1,7 @@
 import { GrCheckmark } from 'react-icons/gr';
 import { AiOutlineEdit } from 'react-icons/ai';
-import { BsFillTrashFill } from 'react-icons/bs';
+import { BsFillTrashFill, BsPlayFill } from 'react-icons/bs';
+import { IoMdPause } from 'react-icons/io';
 import './Styles.css';
 import moment from 'moment';
 
@@ -45,6 +46,8 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
           {task.estimate === '' ? 'N/A' : task.estimate}
         </div>
         <div className="todo-icons">
+          <BsPlayFill className="ongoing-task" />
+          <IoMdPause className="ongoing-task" />
           <GrCheckmark className="ongoing-task" onClick={() => onMove(task)} />
           {/* <AiOutlineEdit className="ongoing-task" /> */}
           <BsFillTrashFill
