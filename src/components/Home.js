@@ -100,6 +100,11 @@ const Home = ({
         />
       </div>
 
+      <div className="summary">
+        <span>Estimated Time: ~</span>
+        <span>Time Working: ~</span>
+      </div>
+
       {showAddTask && <AddTask onAdd={addOngoingTask} />}
       {ongoingTasks.length > 0 ? (
         <OngoingTasks

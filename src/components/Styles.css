@@ -251,7 +251,7 @@ u:hover {
 }
 
 .rbc-today {
-  background-color: #CBC3E3 !important;
+  background-color: #cbc3e3 !important;
   /* opacity: 30%; */
 }
 
@@ -315,4 +315,14 @@ u:hover {
 
 .auth-button:hover {
   cursor: pointer;
+}
+
+.summary {
+  color: darkgray;
+  padding-bottom: 2vw;
+  text-align: center;
+}
+
+span {
+  padding-right: 5vw;
 }

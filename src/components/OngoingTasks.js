@@ -4,8 +4,10 @@ import { BsFillTrashFill, BsPlayFill } from 'react-icons/bs';
 import { IoMdPause } from 'react-icons/io';
 import './Styles.css';
 import moment from 'moment';
+import { useState } from 'react';
 
 const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
+  const [play, setPlay] = useState(true);
   const filteredTasks = ongoingTasks.filter((task) => task.displayTask);
 
   // function displayDate(task, formatType) {
@@ -46,8 +48,18 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
           {task.estimate === '' ? 'N/A' : task.estimate}
         </div>
         <div className="todo-icons">
-          <BsPlayFill className="ongoing-task" />
-          <IoMdPause className="ongoing-task" />
+          {play ? (
+            <BsPlayFill
+              className="ongoing-task"
+              onClick={() => setPlay(!play)}
+            />
+          ) : (
+            <IoMdPause
+              className="ongoing-task"
+              onClick={() => setPlay(!play)}
+            />
+          )}
+
           <GrCheckmark className="ongoing-task" onClick={() => onMove(task)} />
           {/* <AiOutlineEdit className="ongoing-task" /> */}
           <BsFillTrashFill
