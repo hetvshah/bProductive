@@ -3,7 +3,6 @@ import Home from './components/Home';
 import Tracker from './components/Tracker';
 import Calendar from './components/Calendar';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { useState } from 'react';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import { Container } from 'react-bootstrap';
@@ -15,7 +14,6 @@ import ForgotPassword from './components/auth/ForgotPassword';
 import UpdateProfile from './components/auth/UpdateProfile';
 import firebase from './components/firebase';
 import { db } from './components/firebase';
-import { useAuth } from './components/contexts/AuthContext';
 
 import React from 'react';
 
@@ -29,6 +27,13 @@ class App extends React.Component {
   changeState = (props) => {
     this.setState({
       showAddTask: props,
+    });
+  };
+
+  resetState = () => {
+    this.setState({
+      ongoingTasks: [],
+      completedTasks: [],
     });
   };
 
@@ -91,64 +96,76 @@ class App extends React.Component {
   // ]);
 
   componentDidMount() {
-    let user = firebase.auth().currentUser;
-    let uid = user.uid;
-    const previousOngoingTasks = this.state.ongoingTasks;
-    const previousCompletedTasks = this.state.completedTasks;
-    db.ref('users/' + uid + '/ongoingTasks').on('child_added', (snap) => {
-      previousOngoingTasks.push({
-        id: snap.key,
-        title: snap.val().title,
-        specificTime: snap.val().specificTime,
-        start: snap.val().start,
-        end: snap.val().end,
-        estimate: snap.val().estimate,
-        notes: snap.val().notes,
-        displayTask: snap.val().displayTask,
-        displayCalendar: snap.val().displayCalendar,
-      });
-      this.setState({
-        ongoingTasks: previousOngoingTasks,
-      });
-    });
+    console.log(this.state.ongoingTasks);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        var uid = user.uid;
+        console.log(uid);
 
-    db.ref('users/' + uid + '/completedTasks').on('child_added', (snap) => {
-      previousCompletedTasks.push({
-        id: snap.key,
-        title: snap.val().title,
-        specificTime: snap.val().specificTime,
-        start: snap.val().start,
-        end: snap.val().end,
-        estimate: snap.val().estimate,
-        notes: snap.val().notes,
-        displayTask: snap.val().displayTask,
-        displayCalendar: snap.val().displayCalendar,
-      });
-      this.setState({
-        completedTasks: previousCompletedTasks,
-      });
-    });
+        const previousOngoingTasks = this.state.ongoingTasks;
+        const previousCompletedTasks = this.state.completedTasks;
+        db.ref('users/' + uid + '/ongoingTasks').on('child_added', (snap) => {
+          previousOngoingTasks.push({
+            id: snap.key,
+            title: snap.val().title,
+            specificTime: snap.val().specificTime,
+            start: snap.val().start,
+            end: snap.val().end,
+            estimate: snap.val().estimate,
+            notes: snap.val().notes,
+            displayTask: snap.val().displayTask,
+            displayCalendar: snap.val().displayCalendar,
+          });
+          this.setState({
+            ongoingTasks: previousOngoingTasks,
+          });
+        });
 
-    db.ref('users/' + uid + '/ongoingTasks').on('child_removed', (snap) => {
-      for (var i = 0; i < previousOngoingTasks.length; i++) {
-        if (previousOngoingTasks[i].id === snap.key) {
-          previousOngoingTasks.splice(i, 1);
-        }
+        console.log(previousOngoingTasks);
+
+        db.ref('users/' + uid + '/completedTasks').on('child_added', (snap) => {
+          previousCompletedTasks.push({
+            id: snap.key,
+            title: snap.val().title,
+            specificTime: snap.val().specificTime,
+            start: snap.val().start,
+            end: snap.val().end,
+            estimate: snap.val().estimate,
+            notes: snap.val().notes,
+            displayTask: snap.val().displayTask,
+            displayCalendar: snap.val().displayCalendar,
+          });
+          this.setState({
+            completedTasks: previousCompletedTasks,
+          });
+        });
+
+        db.ref('users/' + uid + '/ongoingTasks').on('child_removed', (snap) => {
+          for (var i = 0; i < previousOngoingTasks.length; i++) {
+            if (previousOngoingTasks[i].id === snap.key) {
+              previousOngoingTasks.splice(i, 1);
+            }
+          }
+          this.setState({
+            ongoingTasks: previousOngoingTasks,
+          });
+        });
+
+        db.ref('users/' + uid + '/completedTasks').on(
+          'child_removed',
+          (snap) => {
+            for (var i = 0; i < previousCompletedTasks.length; i++) {
+              if (previousCompletedTasks[i].id === snap.key) {
+                previousCompletedTasks.splice(i, 1);
+              }
+            }
+            this.setState({
+              completedTasks: previousCompletedTasks,
+            });
+          }
+        );
+      } else {
       }
-      this.setState({
-        ongoingTasks: previousOngoingTasks,
-      });
-    });
-
-    db.ref('users/' + uid + '/completedTasks').on('child_removed', (snap) => {
-      for (var i = 0; i < previousCompletedTasks.length; i++) {
-        if (previousCompletedTasks[i].id === snap.key) {
-          previousCompletedTasks.splice(i, 1);
-        }
-      }
-      this.setState({
-        completedTasks: previousCompletedTasks,
-      });
     });
   }
 
@@ -169,7 +186,6 @@ class App extends React.Component {
               </Container>
             </div>
           </PrivateRoute>
-
           {/* home page */}
           <PrivateRoute
             exact
@@ -177,11 +193,8 @@ class App extends React.Component {
             component={() => (
               <Home
                 ongoingTasks={this.state.ongoingTasks}
-                // setOngoingTasks={setOngoingTasks}
                 completedTasks={this.state.completedTasks}
-                // setCompletedTasks={setCompletedTasks}
                 showAddTask={this.state.showAddTask}
-                // setAddTask={setAddTask}
                 changeState={this.changeState}
               />
             )}
@@ -194,7 +207,6 @@ class App extends React.Component {
             path="/calendar"
             render={(props) => <Calendar events={this.state.ongoingTasks} />}
           />
-
           {/* login page */}
           <Route path="/login">
             <div style={{ backgroundColor: '#f3efff' }}>
@@ -203,7 +215,7 @@ class App extends React.Component {
                 style={{ minHeight: '90vh' }}
               >
                 <div className="w-100" style={{ maxWidth: '450px' }}>
-                  <Login />
+                  <Login resetState={this.resetState} />
                 </div>
               </Container>
             </div>
@@ -216,7 +228,7 @@ class App extends React.Component {
                 style={{ minHeight: '90vh' }}
               >
                 <div className="w-100" style={{ maxWidth: '450px' }}>
-                  <Signup />
+                  <Signup resetState={this.resetState} />
                 </div>
               </Container>
             </div>

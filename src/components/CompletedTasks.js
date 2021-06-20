@@ -7,16 +7,18 @@ const CompletedTasks = ({ completedTasks, onMove, onDelete }) => {
     <div className="todo todo-complete">
       <div>
         <h3>{task.title}</h3>
-        {/* <p>
-          {task.start === '' && task.end === ''
+        <p>
+          {new Date(task.start) === '' && new Date(task.end) === ''
             ? ''
-            : task.start.toDateString() === task.end.toDateString()
-            ? '(Due) Date : ' + moment(task.start).format('MMMM Do [at] LT')
+            : new Date(task.start).toDateString() ===
+              new Date(task.end).toDateString()
+            ? '(Due) Date: ' +
+              moment(new Date(task.start)).format('MMMM Do [at] LT')
             : '(Due) Date: ' +
-              moment(task.start).format('MMMM Do [at] LT') +
+              moment(new Date(task.start)).format('MMMM Do [at] LT') +
               ' to ' +
-              moment(task.end).format('MMMM Do [at] LT')}
-        </p> */}
+              moment(new Date(task.end)).format('MMMM Do [at] LT')}
+        </p>
         <p>{task.notes === '' ? '' : 'Notes: ' + task.notes}</p>
       </div>
 

@@ -3,6 +3,11 @@ import MyCalendar from './MyCalendar';
 import Header from './Header';
 
 const Calendar = ({ events }) => {
+  // events.map((event) => {
+  //   event.start = new Date(event.start);
+  //   event.end = new Date(event.end);
+  // });
+
   return (
     <div>
       <Header />

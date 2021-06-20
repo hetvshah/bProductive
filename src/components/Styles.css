@@ -274,6 +274,7 @@ u:hover {
 
 .rbc-event {
   background-color: #9c50b6 !important;
+  border: 1px solid #9c50b6;
 }
 
 .rbc-events-container {
@@ -283,6 +284,10 @@ u:hover {
 .rbc-day-slot .rbc-event-content {
   font-size: 80%;
   line-height: normal !important;
+}
+
+.rbc-date-cell {
+  padding-bottom: 5px;
 }
 
 .react-datetime-picker__wrapper {

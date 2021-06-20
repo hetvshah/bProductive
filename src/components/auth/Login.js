@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ resetState }) => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -18,6 +18,7 @@ const Login = () => {
     try {
       setError('');
       setLoading(true);
+      resetState();
       await login(emailRef.current.value, passwordRef.current.value);
       history.push('/');
     } catch {

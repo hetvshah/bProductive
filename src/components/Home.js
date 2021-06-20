@@ -6,7 +6,6 @@ import CompletedTasks from './CompletedTasks';
 import AddTask from './AddTask';
 import { useAuth } from '../components/contexts/AuthContext';
 import { db } from '../components/firebase';
-import { useState } from 'react';
 import React from 'react';
 
 const Home = ({
@@ -19,19 +18,17 @@ const Home = ({
   changeState,
 }) => {
   const { currentUser } = useAuth();
-  let uid = currentUser.uid;
   // const [showAdd, setShowAdd] = useState(false);
 
   const addOngoingTask = (task) => {
     // setOngoingTasks([...ongoingTasks, task]);
-
-    db.ref('users/' + uid + '/ongoingTasks')
+    db.ref('users/' + currentUser.uid + '/ongoingTasks')
       .push()
       .set({
         title: task.title,
         specificTime: task.specificTime,
-        start: 'task.start',
-        end: 'task.end',
+        start: task.start.toString(),
+        end: task.end.toString(),
         estimate: task.estimate,
         notes: task.notes,
         displayTask: task.displayTask,
@@ -42,13 +39,13 @@ const Home = ({
   const addCompletedTask = (task) => {
     // setCompletedTasks([...completedTasks, task]);
 
-    db.ref('users/' + uid + '/completedTasks')
+    db.ref('users/' + currentUser.uid + '/completedTasks')
       .push()
       .set({
         title: task.title,
         specificTime: task.specificTime,
-        start: 'task.start',
-        end: 'task.end',
+        start: task.start.toString(),
+        end: task.end.toString(),
         estimate: task.estimate,
         notes: task.notes,
         displayTask: task.displayTask,
@@ -74,14 +71,14 @@ const Home = ({
     //     .child(task.title)
     // );
 
-    db.ref('users/' + uid + '/ongoingTasks')
+    db.ref('users/' + currentUser.uid + '/ongoingTasks')
       .child(task.id)
       .remove();
   };
 
   const deleteCompletedTask = (task) => {
     console.log(task);
-    db.ref('users/' + uid + '/completedTasks')
+    db.ref('users/' + currentUser.uid + '/completedTasks')
       .child(task.id)
       .remove();
   };
@@ -126,7 +123,7 @@ const Home = ({
             // completedTasks.map((task) => {
             //   deleteCompletedTask(task);
             // });
-            db.ref('users/' + uid + '/completedTasks').remove();
+            db.ref('users/' + currentUser.uid + '/completedTasks').remove();
           }}
         >
           Delete All

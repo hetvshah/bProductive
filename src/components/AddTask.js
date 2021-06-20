@@ -9,12 +9,13 @@ const AddTask = ({ onAdd }) => {
   const [end, setEnd] = useState(new Date());
   const [estimate, setEstimate] = useState('');
   const [notes, setNotes] = useState('');
-  const [displayTask, setDisplayTask] = useState(false);
-  const [displayCalendar, setDisplayCalendar] = useState(false);
+  const [displayTask, setDisplayTask] = useState(true);
+  const [displayCalendar, setDisplayCalendar] = useState(true);
   // const [value, onChange] = useState(new Date());
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(start);
     onAdd({
       title,
       specificTime,
@@ -31,8 +32,8 @@ const AddTask = ({ onAdd }) => {
     setEnd(new Date());
     setEstimate('');
     setNotes('');
-    setDisplayTask(false);
-    setDisplayCalendar(false);
+    setDisplayTask(true);
+    setDisplayCalendar(true);
   };
 
   return (
