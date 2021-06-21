@@ -60,10 +60,10 @@ u:hover {
 .task-btn {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .home-btn {
-  display: inline-block;
   background: none;
   margin: 0;
   border: none;
@@ -89,10 +89,8 @@ u:hover {
   background: black;
   color: white;
   width: 9vw;
+  height: 2.2vw;
   border-radius: 1vw;
-  margin-top: 1.2vw;
-  margin-bottom: 1vw;
-  margin-right: 1vw;
 }
 
 .delete:hover {
@@ -161,15 +159,15 @@ u:hover {
 
 .form-control-task input {
   width: 100%;
-  height: 40px;
+  height: 2vw;
   padding: 0.1vw 0.5vw;
   font-size: 1vw;
 }
 
 .form-control-task textarea {
   width: 100%;
-  height: 40px;
-  padding: 0.1vw 0.5vw;
+  height: 3vw;
+  padding: 0.5vw 0.5vw;
   font-size: 1vw;
   font-family: inherit;
 }
@@ -325,4 +323,20 @@ u:hover {
 
 span {
   padding-right: 5vw;
+}
+
+.estimated-time-inpt {
+  width: 25% !important;
+}
+
+.estimated-time-lbl {
+  display: inline-block !important;
+  font-size: 1vw !important;
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+
+.estimate {
+  display: block;
+  width: 100%;
 }

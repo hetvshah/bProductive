@@ -4,22 +4,9 @@ import { BsFillTrashFill, BsPlayFill } from 'react-icons/bs';
 import { IoMdPause } from 'react-icons/io';
 import './Styles.css';
 import moment from 'moment';
-import { useState } from 'react';
 
 const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
-  const [play, setPlay] = useState(true);
   const filteredTasks = ongoingTasks.filter((task) => task.displayTask);
-
-  // function displayDate(task, formatType) {
-  //   return task.start === '' && task.end === ''
-  //     ? ''
-  //     : task.start.toDateString() === task.end.toDateString()
-  //     ? '(Due) Date: ' + moment(task.start).format(formatType)
-  //     : '(Due) Date: ' +
-  //       moment(task.start).format(formatType) +
-  //       ' to ' +
-  //       moment(task.end).format(formatType);
-  // }
 
   if (filteredTasks.length > 0) {
     // setPlay(true);
@@ -59,19 +46,14 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
           {task.estimate === '' ? 'N/A' : task.estimate}
         </div>
         <div className="todo-icons">
-          {/* {play ? (
-            <BsPlayFill
-              className="ongoing-task"
-              onClick={() => setPlay(!play)}
-            />
-          ) : (
-            <IoMdPause
-              className="ongoing-task"
-              onClick={() => setPlay(!play)}
-            />
-          )} */}
-          <BsPlayFill className="ongoing-task" />
-          <IoMdPause className="ongoing-task" />
+          <BsPlayFill
+            className="ongoing-task"
+            onClick={() => console.log('working on ' + task.title)}
+          />
+          <IoMdPause
+            className="ongoing-task"
+            onClick={() => console.log('stopped working on ' + task.title)}
+          />
 
           <GrCheckmark className="ongoing-task" onClick={() => onMove(task)} />
           {/* <AiOutlineEdit className="ongoing-task" /> */}

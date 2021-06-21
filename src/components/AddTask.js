@@ -87,21 +87,13 @@ const AddTask = ({ onAdd }) => {
             <div className="datetime-picker">
               <label style={{ marginBottom: '1vw' }}>Start Time & Day</label>
               <div>
-                <DateTimePicker
-                  onChange={setStart}
-                  value={start}
-                  // onChange={(e) => setDay(e.target.value)}
-                />
+                <DateTimePicker onChange={setStart} value={start} />
               </div>
             </div>
             <div className="datetime-picker">
               <label style={{ marginBottom: '1vw' }}>End Time & Day</label>
               <div>
-                <DateTimePicker
-                  onChange={setEnd}
-                  value={end}
-                  // onChange={(e) => setDay(e.target.value)}
-                />
+                <DateTimePicker onChange={setEnd} value={end} />
               </div>
             </div>
           </div>
@@ -110,11 +102,7 @@ const AddTask = ({ onAdd }) => {
             <div className="datetime-picker">
               <label style={{ marginBottom: '1vw' }}>Start Day</label>
               <div>
-                <DatePicker
-                  onChange={setStart}
-                  value={start}
-                  // onChange={(e) => setDay(e.target.value)}
-                />
+                <DatePicker onChange={setStart} value={start} />
               </div>
             </div>
             <div className="datetime-picker">
@@ -138,13 +126,26 @@ const AddTask = ({ onAdd }) => {
 
         <div className="form-control-task">
           <label style={{ marginBottom: '1vw' }}>Estimated Time</label>
-          <input
-            type="text"
-            placeholder="add estimated time"
-            value={estimate}
-            onChange={(e) => setEstimate(e.target.value)}
-          />
+          <div className="estimate">
+            <input
+              className="estimated-time-inpt"
+              type="text"
+              placeholder="add estimated time"
+              value={estimate}
+              onChange={(e) => setEstimate(e.target.value)}
+            />
+            <label className="estimated-time-lbl">hours</label>
+            <input
+              className="estimated-time-inpt"
+              type="text"
+              placeholder="add estimated time"
+              value={estimate}
+              onChange={(e) => setEstimate(e.target.value)}
+            />
+            <label className="estimated-time-lbl">minutes</label>
+          </div>
         </div>
+
         <div className="form-control-task">
           <label style={{ marginBottom: '1vw' }}>Notes (if any)</label>
           <textarea
