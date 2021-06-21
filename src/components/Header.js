@@ -65,9 +65,6 @@ const Header = () => {
             <Link to="/calendar">
               <u className="calendar-link">Calendar</u>
             </Link>
-            <Link to="/tracker">
-              <u className="tracker-link">Time Tracker</u>
-            </Link>
           </p>
         </div>
       </div>

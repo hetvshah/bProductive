@@ -7,7 +7,6 @@ import moment from 'moment';
 import { useState } from 'react';
 
 const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
-  console.log(new Date(''));
   const [play, setPlay] = useState(true);
   const filteredTasks = ongoingTasks.filter((task) => task.displayTask);
 
@@ -23,6 +22,7 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
   // }
 
   if (filteredTasks.length > 0) {
+    // setPlay(true);
     const listOngoingTasks = filteredTasks.map((task) => (
       <div className="todo">
         <div>
@@ -59,7 +59,7 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
           {task.estimate === '' ? 'N/A' : task.estimate}
         </div>
         <div className="todo-icons">
-          {play ? (
+          {/* {play ? (
             <BsPlayFill
               className="ongoing-task"
               onClick={() => setPlay(!play)}
@@ -69,7 +69,9 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
               className="ongoing-task"
               onClick={() => setPlay(!play)}
             />
-          )}
+          )} */}
+          <BsPlayFill className="ongoing-task" />
+          <IoMdPause className="ongoing-task" />
 
           <GrCheckmark className="ongoing-task" onClick={() => onMove(task)} />
           {/* <AiOutlineEdit className="ongoing-task" /> */}

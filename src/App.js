@@ -1,6 +1,5 @@
 // import 'bootstrap/dist/css//bootstrap.min.css';
 import Home from './components/Home';
-import Tracker from './components/Tracker';
 import Calendar from './components/Calendar';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './components/auth/Login';
@@ -199,8 +198,6 @@ class App extends React.Component {
               />
             )}
           />
-          {/* tracker page */}
-          <Route exact path="/tracker" render={(props) => <Tracker />} />
           {/* calendar page */}
           <Route
             exact
