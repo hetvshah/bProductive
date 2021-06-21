@@ -20,20 +20,35 @@ const Home = ({
   const { currentUser } = useAuth();
   // const [showAdd, setShowAdd] = useState(false);
 
-  const addOngoingTask = (task) => {
+  const addOngoingTask = (task, specificDay) => {
     // setOngoingTasks([...ongoingTasks, task]);
-    db.ref('users/' + currentUser.uid + '/ongoingTasks')
-      .push()
-      .set({
-        title: task.title,
-        specificTime: task.specificTime,
-        start: task.start.toString(),
-        end: task.end.toString(),
-        estimate: task.estimate,
-        notes: task.notes,
-        displayTask: task.displayTask,
-        displayCalendar: task.displayCalendar,
-      });
+    if (specificDay) {
+      db.ref('users/' + currentUser.uid + '/ongoingTasks')
+        .push()
+        .set({
+          title: task.title,
+          specificTime: task.specificTime,
+          start: task.start.toString(),
+          end: task.end.toString(),
+          estimate: task.estimate,
+          notes: task.notes,
+          displayTask: task.displayTask,
+          displayCalendar: task.displayCalendar,
+        });
+    } else {
+      db.ref('users/' + currentUser.uid + '/ongoingTasks')
+        .push()
+        .set({
+          title: task.title,
+          specificTime: task.specificTime,
+          start: '',
+          end: '',
+          estimate: task.estimate,
+          notes: task.notes,
+          displayTask: task.displayTask,
+          displayCalendar: task.displayCalendar,
+        });
+    }
   };
 
   const addCompletedTask = (task) => {

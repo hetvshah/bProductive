@@ -4,6 +4,7 @@ import DatePicker from 'react-date-picker';
 
 const AddTask = ({ onAdd }) => {
   const [title, setTitle] = useState('');
+  const [specificDay, setSpecificDay] = useState(true);
   const [specificTime, setSpecificTime] = useState(false);
   const [start, setStart] = useState(new Date());
   const [end, setEnd] = useState(new Date());
@@ -16,16 +17,25 @@ const AddTask = ({ onAdd }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(start);
-    onAdd({
-      title,
-      specificTime,
-      start,
-      end,
-      estimate,
-      notes,
-      displayTask,
-      displayCalendar,
-    });
+    if (!specificDay) {
+      setSpecificTime(false);
+      setDisplayCalendar(false);
+    }
+
+    onAdd(
+      {
+        title,
+        specificTime,
+        start,
+        end,
+        estimate,
+        notes,
+        displayTask,
+        displayCalendar,
+      },
+      specificDay
+    );
+
     setTitle('');
     setSpecificTime(false);
     setStart(new Date());
@@ -49,16 +59,30 @@ const AddTask = ({ onAdd }) => {
           />
         </div>
         <div className="form-control-check">
-          <label>Specific Time</label>
+          <label>Specific Day</label>
           <input
             type="checkbox"
-            value={specificTime}
-            checked={specificTime}
-            onChange={(e) => setSpecificTime(e.currentTarget.checked)}
+            value={specificDay}
+            checked={specificDay}
+            onChange={(e) => setSpecificDay(e.currentTarget.checked)}
           />
         </div>
 
-        {specificTime ? (
+        {specificDay ? (
+          <div className="form-control-check">
+            <label>Specific Time</label>
+            <input
+              type="checkbox"
+              value={specificTime}
+              checked={specificTime}
+              onChange={(e) => setSpecificTime(e.currentTarget.checked)}
+            />
+          </div>
+        ) : (
+          ''
+        )}
+
+        {specificDay && specificTime ? (
           <div>
             <div className="datetime-picker">
               <label style={{ marginBottom: '1vw' }}>Start Time & Day</label>
@@ -81,7 +105,7 @@ const AddTask = ({ onAdd }) => {
               </div>
             </div>
           </div>
-        ) : (
+        ) : specificDay && !specificTime ? (
           <div>
             <div className="datetime-picker">
               <label style={{ marginBottom: '1vw' }}>Start Day</label>
@@ -104,6 +128,12 @@ const AddTask = ({ onAdd }) => {
               </div>
             </div>
           </div>
+        ) : !specificDay && !specificTime ? (
+          ''
+        ) : !specificDay && specificTime ? (
+          ''
+        ) : (
+          ''
         )}
 
         <div className="form-control-task">
@@ -135,15 +165,19 @@ const AddTask = ({ onAdd }) => {
             onChange={(e) => setDisplayTask(e.currentTarget.checked)}
           />
         </div>
-        <div className="form-control-check">
-          <label>Show on Calendar</label>
-          <input
-            type="checkbox"
-            value={displayCalendar}
-            checked={displayCalendar}
-            onChange={(e) => setDisplayCalendar(e.currentTarget.checked)}
-          />
-        </div>
+        {specificDay ? (
+          <div className="form-control-check">
+            <label>Show on Calendar</label>
+            <input
+              type="checkbox"
+              value={displayCalendar}
+              checked={displayCalendar}
+              onChange={(e) => setDisplayCalendar(e.currentTarget.checked)}
+            />
+          </div>
+        ) : (
+          ''
+        )}
         <input type="submit" value="Save Task" className="home-btn btn-block" />
       </div>
     </form>
