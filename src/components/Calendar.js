@@ -3,9 +3,15 @@ import MyCalendar from './MyCalendar';
 import Header from './Header';
 
 const Calendar = ({ events }) => {
+  const transform = (event) => {
+    if (event.start !== '') {
+      event.start = new Date(event.start)
+      event.end = new Date(event.end)
+    } 
+  }
+
   events.map((event) => {
-    event.start = new Date(event.start);
-    event.end = new Date(event.end);
+    transform(event)
   });
 
   return (

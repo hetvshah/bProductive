@@ -4,11 +4,12 @@ import DatePicker from 'react-date-picker';
 
 const AddTask = ({ onAdd }) => {
   const [title, setTitle] = useState('');
-  const [specificDay, setSpecificDay] = useState(true);
+  const [specificDay, setSpecificDay] = useState(false);
   const [specificTime, setSpecificTime] = useState(false);
   const [start, setStart] = useState(new Date());
   const [end, setEnd] = useState(new Date());
-  const [estimate, setEstimate] = useState('');
+  const [estimateHours, setEstimateHours] = useState(0);
+  const [estimateMin, setEstimateMin] = useState(0);
   const [notes, setNotes] = useState('');
   const [displayTask, setDisplayTask] = useState(true);
   const [displayCalendar, setDisplayCalendar] = useState(true);
@@ -18,6 +19,7 @@ const AddTask = ({ onAdd }) => {
     e.preventDefault();
     console.log(start);
     if (!specificDay) {
+      console.log('CHECK');
       setSpecificTime(false);
       setDisplayCalendar(false);
     }
@@ -28,7 +30,8 @@ const AddTask = ({ onAdd }) => {
         specificTime,
         start,
         end,
-        estimate,
+        estimateHours,
+        estimateMin,
         notes,
         displayTask,
         displayCalendar,
@@ -40,7 +43,8 @@ const AddTask = ({ onAdd }) => {
     setSpecificTime(false);
     setStart(new Date());
     setEnd(new Date());
-    setEstimate('');
+    setEstimateHours(0);
+    setEstimateMin(0);
     setNotes('');
     setDisplayTask(true);
     setDisplayCalendar(true);
@@ -131,16 +135,16 @@ const AddTask = ({ onAdd }) => {
               className="estimated-time-inpt"
               type="text"
               placeholder="add estimated time"
-              value={estimate}
-              onChange={(e) => setEstimate(e.target.value)}
+              value={estimateHours}
+              onChange={(e) => setEstimateHours(e.target.value)}
             />
             <label className="estimated-time-lbl">hours</label>
             <input
               className="estimated-time-inpt"
               type="text"
               placeholder="add estimated time"
-              value={estimate}
-              onChange={(e) => setEstimate(e.target.value)}
+              value={estimateMin}
+              onChange={(e) => setEstimateMin(e.target.value)}
             />
             <label className="estimated-time-lbl">minutes</label>
           </div>

@@ -6,6 +6,7 @@ import './Styles.css';
 import moment from 'moment';
 
 const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
+  ongoingTasks.map(task => console.log(task.start))
   const filteredTasks = ongoingTasks.filter((task) => task.displayTask);
 
   if (filteredTasks.length > 0) {
@@ -18,6 +19,8 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
             {/* {task.specificTime
               ? displayDate(task, 'MMMM Do [at] LT')
               : displayDate(task, 'MMMM Do')} */}
+              {/* {console.log(task.start)}
+              {console.log(task.end)} */}
             {task.specificTime
               ? task.start === '' && task.end === ''
                 ? ''
