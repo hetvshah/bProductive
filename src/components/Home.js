@@ -77,7 +77,7 @@ const Home = ({
   };
 
   const moveCompleteTask = (task) => {
-    addOngoingTask(task);
+    addOngoingTask(task, true);
     deleteCompletedTask(task);
   };
 
@@ -103,6 +103,16 @@ const Home = ({
 
   const timeElapsed = Date.now();
   const today = new Date(timeElapsed);
+  var totalHours = 0;
+  var totalMin = 0;
+
+  ongoingTasks.map((task) => {
+    totalHours += parseFloat(task.estimateHours);
+    totalMin += parseFloat(task.estimateMin);
+  });
+
+  totalHours += Math.floor(totalMin / 60);
+  totalMin = totalMin % 60;
 
   return (
     <div>
@@ -119,8 +129,10 @@ const Home = ({
       </div>
 
       <div className="summary">
-        <span>Estimated Time: ~</span>
-        <span>Time Working: ~</span>
+        <span>
+          Estimated Time Needed: ~ {totalHours + 'h ' + totalMin + 'm'}
+        </span>
+        <span>Time Worked: ~</span>
       </div>
 
       {showAddTask && <AddTask onAdd={addOngoingTask} />}

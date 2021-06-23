@@ -8,21 +8,39 @@ const CompletedTasks = ({ completedTasks, onMove, onDelete }) => {
       <div>
         <h3>{task.title}</h3>
         <p>
-          {new Date(task.start) === '' && new Date(task.end) === ''
+          {task.specificTime
+            ? task.start === '' && task.end === ''
+              ? ''
+              : new Date(task.start).toDateString() ===
+                new Date(task.end).toDateString()
+              ? '(Due) Date: ' +
+                moment(new Date(task.start)).format('MMMM Do [at] LT')
+              : '(Due) Date: ' +
+                moment(new Date(task.start)).format('MMMM Do [at] LT') +
+                ' to ' +
+                moment(new Date(task.end)).format('MMMM Do [at] LT')
+            : task.start === '' && task.end === ''
             ? ''
             : new Date(task.start).toDateString() ===
               new Date(task.end).toDateString()
-            ? '(Due) Date: ' +
-              moment(new Date(task.start)).format('MMMM Do [at] LT')
+            ? '(Due) Date: ' + moment(new Date(task.start)).format('MMMM Do')
             : '(Due) Date: ' +
-              moment(new Date(task.start)).format('MMMM Do [at] LT') +
+              moment(new Date(task.start)).format('MMMM Do') +
               ' to ' +
-              moment(new Date(task.end)).format('MMMM Do [at] LT')}
+              moment(new Date(task.end)).format('MMMM Do')}
         </p>
         <p>{task.notes === '' ? '' : 'Notes: ' + task.notes}</p>
       </div>
 
-      <div className="times">{task.estimate}</div>
+      <div className="times">
+        {task.estimateHours === 0 && task.estimateMin !== 0
+          ? task.estimateMin + 'm'
+          : task.estimateHours !== 0 && task.estimateMin === 0
+          ? task.estimateHours + 'h'
+          : task.estimateHours === 0 && task.estimateMin === 0
+          ? '-'
+          : task.estimateHours + 'h ' + task.estimateMin + 'm'}
+      </div>
       <div className="todo-icons">
         <ImUndo className="im-undo" onClick={() => onMove(task)} />
         <BsFillTrashFill

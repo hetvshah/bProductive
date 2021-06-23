@@ -6,7 +6,7 @@ import './Styles.css';
 import moment from 'moment';
 
 const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
-  ongoingTasks.map(task => console.log(task.start))
+  ongoingTasks.map((task) => console.log(task.start));
   const filteredTasks = ongoingTasks.filter((task) => task.displayTask);
 
   if (filteredTasks.length > 0) {
@@ -16,11 +16,6 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
         <div>
           <h3>{task.title}</h3>
           <p>
-            {/* {task.specificTime
-              ? displayDate(task, 'MMMM Do [at] LT')
-              : displayDate(task, 'MMMM Do')} */}
-              {/* {console.log(task.start)}
-              {console.log(task.end)} */}
             {task.specificTime
               ? task.start === '' && task.end === ''
                 ? ''
@@ -46,7 +41,14 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
         </div>
 
         <div className="times">
-          {task.estimate === '' ? 'N/A' : task.estimate}
+          {/* {task.estimate === '' ? 'N/A' : task.estimate} */}
+          {task.estimateHours === 0 && task.estimateMin !== 0
+            ? task.estimateMin + 'm'
+            : task.estimateHours !== 0 && task.estimateMin === 0
+            ? task.estimateHours + 'h'
+            : task.estimateHours === 0 && task.estimateMin === 0
+            ? '-'
+            : task.estimateHours + 'h ' + task.estimateMin + 'm'}
         </div>
         <div className="todo-icons">
           <BsPlayFill
