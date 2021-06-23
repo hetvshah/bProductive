@@ -1,4 +1,4 @@
-# Productivity App (creative names in progress...)
+# bProductive
 
 Plan your days and track your productivity with this user-friendly and simplistically designed web-based app 
 
