@@ -7,6 +7,7 @@ import AddTask from './AddTask';
 import { useAuth } from '../components/contexts/AuthContext';
 import { db } from '../components/firebase';
 import React from 'react';
+import { AiFillCodeSandboxCircle } from 'react-icons/ai';
 
 const Home = ({
   ongoingTasks,
@@ -98,10 +99,11 @@ const Home = ({
 
   const addTimeSpent = (task, time) => {
     task.timeSpent = task.timeSpent + time;
-    console.log(task.timeSpent);
-    db.ref(
-      'users/' + currentUser.uid + '/ongoingTasks/' + task.id + '/timeSpent'
-    ).set(task.timeSpent);
+    db.ref('users/' + currentUser.uid + '/ongoingTasks')
+      .child(task.id)
+      .update({
+        timeSpent: task.timeSpent,
+      });
   };
 
   const timeElapsed = Date.now();
@@ -112,6 +114,9 @@ const Home = ({
   var totalWorkedHours = 0;
   var totalWorkedMin = 0;
 
+  // db.ref('users/' + currentUser.uid + '/ongoingTasks').on(
+  //   'value',
+  //   (snapshot) => {
   ongoingTasks.map((task) => {
     totalEstHours += parseFloat(task.estimateHours);
     totalEstMin += parseFloat(task.estimateMin);
@@ -124,8 +129,8 @@ const Home = ({
   totalEstMin = totalEstMin % 60;
   totalWorkedHours += Math.floor(totalWorkedMin / 60);
   totalWorkedMin = totalWorkedMin % 60;
-
-  console.log(totalWorkedMin);
+  // }
+  // );
 
   return (
     <div>

@@ -9,6 +9,12 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete, onPause }) => {
   var start, end;
   const filteredTasks = ongoingTasks.filter((task) => task.displayTask);
 
+  // var starCountRef = firebase.database().ref('posts/' + postId + '/starCount');
+  // starCountRef.on('value', (snapshot) => {
+  //   const data = snapshot.val();
+  //   updateStarCount(postElement, data);
+  // });
+
   if (filteredTasks.length > 0) {
     // setPlay(true);
     const listOngoingTasks = filteredTasks.map((task) => (
@@ -41,13 +47,14 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete, onPause }) => {
         </div>
 
         <div className="times">
+          {/* {console.log(task.timeSpent)} */}
           {/* {task.estimate === '' ? 'N/A' : task.estimate} */}
           {task.estimateHours === 0 && task.estimateMin !== 0
             ? task.estimateMin + 'm / '
             : task.estimateHours !== 0 && task.estimateMin === 0
             ? task.estimateHours + 'h / '
             : task.estimateHours === 0 && task.estimateMin === 0
-            ? '-'
+            ? '- / '
             : task.estimateHours + 'h ' + task.estimateMin + 'm / '}
           {task.timeSpent === 0
             ? '-'
@@ -73,7 +80,7 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete, onPause }) => {
             onClick={() => {
               console.log('stopped working on ' + task.title);
               end = new Date();
-              console.log(end - start);
+              // console.log(end - start);
               onPause(task, (end - start) / 60000);
             }}
           />

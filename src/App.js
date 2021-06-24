@@ -95,7 +95,6 @@ class App extends React.Component {
   // ]);
 
   componentDidMount() {
-    console.log(this.state.ongoingTasks);
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         var uid = user.uid;
@@ -121,8 +120,6 @@ class App extends React.Component {
             ongoingTasks: previousOngoingTasks,
           });
         });
-
-        console.log(previousOngoingTasks);
 
         db.ref('users/' + uid + '/completedTasks').on('child_added', (snap) => {
           previousCompletedTasks.push({
@@ -167,8 +164,29 @@ class App extends React.Component {
             });
           }
         );
-      } else {
       }
+
+      db.ref('users/' + uid + '/ongoingTasks').on('value', (snapshot) => {
+        console.log('HELLO');
+        // console.log(snapshot.val());
+        console.log(this.state.ongoingTasks);
+        if (snapshot.exists()) {
+          var newArr = [];
+
+          snapshot.forEach(function (childSnapshot) {
+            var item = childSnapshot.val();
+            item.id = childSnapshot.key;
+
+            newArr.push(item);
+          });
+
+          console.log(newArr);
+
+          this.setState({
+            ongoingTasks: newArr,
+          });
+        }
+      });
     });
   }
 
