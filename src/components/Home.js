@@ -7,7 +7,7 @@ import AddTask from './AddTask';
 import { useAuth } from '../components/contexts/AuthContext';
 import { db } from '../components/firebase';
 import React from 'react';
-import { AiFillCodeSandboxCircle } from 'react-icons/ai';
+import { useState } from 'react';
 
 const Home = ({
   ongoingTasks,
@@ -19,6 +19,8 @@ const Home = ({
   changeState,
 }) => {
   const { currentUser } = useAuth();
+  const [currentTitle, setCurrentTitle] = useState('');
+  const [display, setDisplay] = useState(false);
   // const [showAdd, setShowAdd] = useState(false);
 
   const addOngoingTask = (task, specificDay) => {
@@ -98,7 +100,11 @@ const Home = ({
   };
 
   const addTimeSpent = (task, time) => {
+    console.log(task.timeSpent);
+    console.log(time);
+    console.log(Number(time));
     task.timeSpent = task.timeSpent + time;
+    console.log(task.timeSpent);
     db.ref('users/' + currentUser.uid + '/ongoingTasks')
       .child(task.id)
       .update({
@@ -138,6 +144,10 @@ const Home = ({
       <p style={{ fontSize: '1.25vw', marginTop: '2.5vw' }}>
         📅 Today is {today.toDateString()}. Here is your to-do list!
       </p>
+      {display && (
+        <div className="current-title">WORKING ON TASK "{currentTitle}"</div>
+      )}
+
       <div className="task-btn">
         <h2 style={{ padding: '0 0 0.25vw 0' }}>Ongoing Tasks</h2>
         <Button
@@ -162,6 +172,8 @@ const Home = ({
           onMove={moveOngoingTask}
           onDelete={deleteOngoingTask}
           onPause={addTimeSpent}
+          setCurrentTitle={setCurrentTitle}
+          setDisplay={setDisplay}
         />
       ) : (
         'No tasks to show.'

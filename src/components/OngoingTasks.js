@@ -4,19 +4,21 @@ import { BsFillTrashFill, BsPlayFill } from 'react-icons/bs';
 import { IoMdPause } from 'react-icons/io';
 import './Styles.css';
 import moment from 'moment';
+import { useState } from 'react';
 
-const OngoingTasks = ({ ongoingTasks, onMove, onDelete, onPause }) => {
-  var start, end;
+const OngoingTasks = ({
+  ongoingTasks,
+  onMove,
+  onDelete,
+  onPause,
+  setCurrentTitle,
+  setDisplay,
+}) => {
+  var end;
+  const [start, setStart] = useState();
   const filteredTasks = ongoingTasks.filter((task) => task.displayTask);
 
-  // var starCountRef = firebase.database().ref('posts/' + postId + '/starCount');
-  // starCountRef.on('value', (snapshot) => {
-  //   const data = snapshot.val();
-  //   updateStarCount(postElement, data);
-  // });
-
   if (filteredTasks.length > 0) {
-    // setPlay(true);
     const listOngoingTasks = filteredTasks.map((task) => (
       <div className="todo">
         <div>
@@ -47,8 +49,6 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete, onPause }) => {
         </div>
 
         <div className="times">
-          {/* {console.log(task.timeSpent)} */}
-          {/* {task.estimate === '' ? 'N/A' : task.estimate} */}
           {task.estimateHours === 0 && task.estimateMin !== 0
             ? task.estimateMin + 'm / '
             : task.estimateHours !== 0 && task.estimateMin === 0
@@ -71,17 +71,22 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete, onPause }) => {
           <BsPlayFill
             className="ongoing-task"
             onClick={() => {
-              console.log('working on ' + task.title);
-              start = new Date();
+              setCurrentTitle(task.title);
+              setDisplay(true);
+              console.log('started working on ' + task.title);
+              setStart(new Date());
+              // start = new Date()
             }}
           />
           <IoMdPause
             className="ongoing-task"
             onClick={() => {
+              console.log(start);
               console.log('stopped working on ' + task.title);
               end = new Date();
-              // console.log(end - start);
+              console.log(start);
               onPause(task, (end - start) / 60000);
+              // displayCurrent();
             }}
           />
 

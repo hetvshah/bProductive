@@ -34,12 +34,22 @@ const CompletedTasks = ({ completedTasks, onMove, onDelete }) => {
 
       <div className="times">
         {task.estimateHours === 0 && task.estimateMin !== 0
-          ? task.estimateMin + 'm'
+          ? task.estimateMin + 'm / '
           : task.estimateHours !== 0 && task.estimateMin === 0
-          ? task.estimateHours + 'h'
+          ? task.estimateHours + 'h / '
           : task.estimateHours === 0 && task.estimateMin === 0
+          ? '- / '
+          : task.estimateHours + 'h ' + task.estimateMin + 'm / '}
+        {task.timeSpent === 0
           ? '-'
-          : task.estimateHours + 'h ' + task.estimateMin + 'm'}
+          : Math.round(task.timeSpent) % 60 === 0
+          ? Math.floor(Math.round(task.timeSpent) / 60) + 'h'
+          : task.timeSpent >= 60
+          ? Math.floor(Math.round(task.timeSpent) / 60) +
+            'h ' +
+            (Math.round(task.timeSpent) % 60) +
+            'm'
+          : (Math.round(task.timeSpent) % 60) + 'm'}
       </div>
       <div className="todo-icons">
         <ImUndo className="im-undo" onClick={() => onMove(task)} />
