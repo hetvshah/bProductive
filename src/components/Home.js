@@ -35,6 +35,7 @@ const Home = ({
           notes: task.notes,
           displayTask: task.displayTask,
           displayCalendar: task.displayCalendar,
+          timeSpent: task.timeSpent,
         });
     } else {
       db.ref('users/' + currentUser.uid + '/ongoingTasks')
@@ -49,6 +50,7 @@ const Home = ({
           notes: task.notes,
           displayTask: task.displayTask,
           displayCalendar: task.displayCalendar,
+          timeSpent: task.timeSpent,
         });
     }
   };
@@ -68,6 +70,7 @@ const Home = ({
         notes: task.notes,
         displayTask: task.displayTask,
         displayCalendar: task.displayCalendar,
+        timeSpent: task.timeSpent,
       });
   };
 
@@ -82,37 +85,47 @@ const Home = ({
   };
 
   const deleteOngoingTask = (task) => {
-    // setOngoingTasks(ongoingTasks.filter((todo) => todo.title !== task.title));
-    // console.log(
-    //   db
-    //     .ref('users/4mpCA8Nrd6b5BudHf6SMyS2Ue093/ongoingTasks')
-    //     .child(task.title)
-    // );
-
     db.ref('users/' + currentUser.uid + '/ongoingTasks')
       .child(task.id)
       .remove();
   };
 
   const deleteCompletedTask = (task) => {
-    console.log(task);
     db.ref('users/' + currentUser.uid + '/completedTasks')
       .child(task.id)
       .remove();
   };
 
+  const addTimeSpent = (task, time) => {
+    task.timeSpent = task.timeSpent + time;
+    console.log(task.timeSpent);
+    db.ref(
+      'users/' + currentUser.uid + '/ongoingTasks/' + task.id + '/timeSpent'
+    ).set(task.timeSpent);
+  };
+
   const timeElapsed = Date.now();
   const today = new Date(timeElapsed);
-  var totalHours = 0;
-  var totalMin = 0;
+
+  var totalEstHours = 0;
+  var totalEstMin = 0;
+  var totalWorkedHours = 0;
+  var totalWorkedMin = 0;
 
   ongoingTasks.map((task) => {
-    totalHours += parseFloat(task.estimateHours);
-    totalMin += parseFloat(task.estimateMin);
+    totalEstHours += parseFloat(task.estimateHours);
+    totalEstMin += parseFloat(task.estimateMin);
+    totalWorkedMin += task.timeSpent;
   });
 
-  totalHours += Math.floor(totalMin / 60);
-  totalMin = totalMin % 60;
+  totalWorkedMin = Math.round(totalWorkedMin);
+
+  totalEstHours += Math.floor(totalEstMin / 60);
+  totalEstMin = totalEstMin % 60;
+  totalWorkedHours += Math.floor(totalWorkedMin / 60);
+  totalWorkedMin = totalWorkedMin % 60;
+
+  console.log(totalWorkedMin);
 
   return (
     <div>
@@ -130,9 +143,11 @@ const Home = ({
 
       <div className="summary">
         <span>
-          Estimated Time Needed: ~ {totalHours + 'h ' + totalMin + 'm'}
+          Estimated Time Needed: ~ {totalEstHours + 'h ' + totalEstMin + 'm'}
         </span>
-        <span>Time Worked: ~</span>
+        <span>
+          Time Worked: ~ {totalWorkedHours + 'h ' + totalWorkedMin + 'm'}
+        </span>
       </div>
 
       {showAddTask && <AddTask onAdd={addOngoingTask} />}
@@ -141,6 +156,7 @@ const Home = ({
           ongoingTasks={ongoingTasks}
           onMove={moveOngoingTask}
           onDelete={deleteOngoingTask}
+          onPause={addTimeSpent}
         />
       ) : (
         'No tasks to show.'

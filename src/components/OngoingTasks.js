@@ -5,8 +5,8 @@ import { IoMdPause } from 'react-icons/io';
 import './Styles.css';
 import moment from 'moment';
 
-const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
-  ongoingTasks.map((task) => console.log(task.start));
+const OngoingTasks = ({ ongoingTasks, onMove, onDelete, onPause }) => {
+  var start, end;
   const filteredTasks = ongoingTasks.filter((task) => task.displayTask);
 
   if (filteredTasks.length > 0) {
@@ -43,21 +43,39 @@ const OngoingTasks = ({ ongoingTasks, onMove, onDelete }) => {
         <div className="times">
           {/* {task.estimate === '' ? 'N/A' : task.estimate} */}
           {task.estimateHours === 0 && task.estimateMin !== 0
-            ? task.estimateMin + 'm'
+            ? task.estimateMin + 'm / '
             : task.estimateHours !== 0 && task.estimateMin === 0
-            ? task.estimateHours + 'h'
+            ? task.estimateHours + 'h / '
             : task.estimateHours === 0 && task.estimateMin === 0
             ? '-'
-            : task.estimateHours + 'h ' + task.estimateMin + 'm'}
+            : task.estimateHours + 'h ' + task.estimateMin + 'm / '}
+          {task.timeSpent === 0
+            ? '-'
+            : Math.round(task.timeSpent) % 60 === 0
+            ? Math.floor(Math.round(task.timeSpent) / 60) + 'h'
+            : task.timeSpent >= 60
+            ? Math.floor(Math.round(task.timeSpent) / 60) +
+              'h ' +
+              (Math.round(task.timeSpent) % 60) +
+              'm'
+            : (Math.round(task.timeSpent) % 60) + 'm'}
         </div>
         <div className="todo-icons">
           <BsPlayFill
             className="ongoing-task"
-            onClick={() => console.log('working on ' + task.title)}
+            onClick={() => {
+              console.log('working on ' + task.title);
+              start = new Date();
+            }}
           />
           <IoMdPause
             className="ongoing-task"
-            onClick={() => console.log('stopped working on ' + task.title)}
+            onClick={() => {
+              console.log('stopped working on ' + task.title);
+              end = new Date();
+              console.log(end - start);
+              onPause(task, (end - start) / 60000);
+            }}
           />
 
           <GrCheckmark className="ongoing-task" onClick={() => onMove(task)} />

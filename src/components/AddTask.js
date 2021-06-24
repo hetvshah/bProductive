@@ -13,6 +13,7 @@ const AddTask = ({ onAdd }) => {
   const [notes, setNotes] = useState('');
   const [displayTask, setDisplayTask] = useState(true);
   const [displayCalendar, setDisplayCalendar] = useState(true);
+  const [timeSpent] = useState(0);
   // const [value, onChange] = useState(new Date());
 
   const onSubmit = (e) => {
@@ -35,6 +36,7 @@ const AddTask = ({ onAdd }) => {
         notes,
         displayTask,
         displayCalendar,
+        timeSpent,
       },
       specificDay
     );
@@ -133,7 +135,7 @@ const AddTask = ({ onAdd }) => {
           <div className="estimate">
             <input
               className="estimated-time-inpt"
-              type="text"
+              type="number"
               placeholder="add estimated time"
               value={estimateHours}
               onChange={(e) => setEstimateHours(e.target.value)}
@@ -141,7 +143,7 @@ const AddTask = ({ onAdd }) => {
             <label className="estimated-time-lbl">hours</label>
             <input
               className="estimated-time-inpt"
-              type="text"
+              type="number"
               placeholder="add estimated time"
               value={estimateMin}
               onChange={(e) => setEstimateMin(e.target.value)}

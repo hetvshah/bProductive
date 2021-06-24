@@ -115,6 +115,7 @@ class App extends React.Component {
             notes: snap.val().notes,
             displayTask: snap.val().displayTask,
             displayCalendar: snap.val().displayCalendar,
+            timeSpent: snap.val().timeSpent,
           });
           this.setState({
             ongoingTasks: previousOngoingTasks,
@@ -135,6 +136,7 @@ class App extends React.Component {
             notes: snap.val().notes,
             displayTask: snap.val().displayTask,
             displayCalendar: snap.val().displayCalendar,
+            timeSpent: snap.val().timeSpent,
           });
           this.setState({
             completedTasks: previousCompletedTasks,
