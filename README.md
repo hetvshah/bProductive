@@ -12,7 +12,7 @@ Being someone who can easily lose track of time, I wanted to implement a product
 
 From designing to implementing, I've learned a lot technically and behaviorly. I'd say the following is an important takeaway I learned:
 
-⭐️ organization is key -- in design, code, and mind. 
+⭐️ organization is key -- in design, mind, and code.
 
 ### Acknowledgements
 
@@ -22,9 +22,8 @@ This was my first time building the frontend and backend of an application and d
 * [random](https://medium.com/firebase-developers/why-is-my-currentuser-null-in-firebase-auth-4701791f74f0) firebase bugs
 * [react-big-calendar](https://github.com/jquense/react-big-calendar)
 * [date & time picker](https://projects.wojtekmaj.pl/react-datetime-picker/)
+* [task form](https://www.youtube.com/watch?v=w7ejDZ8SWv8&t=3423s&ab_channel=TraversyMedia)
 
 ### Todo
 * implement functionality for edit
-* add styling for the time tracker
-* implement time tracker
 * fix bug where currentUser.displayName is null just when the user immediately signs in
