@@ -23,7 +23,7 @@ const OngoingTasks = ({
     const listOngoingTasks = filteredTasks.map((task) => (
       <div className="todo">
         <div>
-          <h3>{task.title}</h3>
+          <h3 style={{ fontSize: '1.2vw' }}>{task.title}</h3>
           <div>
             {task.specificTime
               ? task.start === '' && task.end === ''
@@ -46,7 +46,13 @@ const OngoingTasks = ({
                 ' to ' +
                 moment(new Date(task.end)).format('MMMM Do')}
           </div>
-          <div style={{ paddingRight: '3vw', paddingBottom: '2vw' }}>
+          <div
+            style={{
+              paddingRight: '3vw',
+              paddingBottom: '2vw',
+              fontSize: '.95vw',
+            }}
+          >
             {task.notes === '' ? '' : 'Notes: ' + task.notes}
           </div>
         </div>

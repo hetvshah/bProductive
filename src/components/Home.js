@@ -149,7 +149,9 @@ const Home = ({
       )}
 
       <div className="task-btn">
-        <h2 style={{ padding: '0 0 0.25vw 0' }}>Ongoing Tasks</h2>
+        <h2 style={{ padding: '0 0 0.25vw 0', fontSize: '1.5vw' }}>
+          Ongoing Tasks
+        </h2>
         <Button
           onClick={() => changeState(!showAddTask)}
           showAddTask={showAddTask}
@@ -180,7 +182,9 @@ const Home = ({
       )}
 
       <div className="task-btn">
-        <h2 style={{ padding: '0 0 0.25vw 0' }}>Completed Tasks</h2>
+        <h2 style={{ padding: '0 0 0.25vw 0', fontSize: '1.5vw' }}>
+          Completed Tasks
+        </h2>
         <button
           className="home-btn delete"
           onClick={() => {

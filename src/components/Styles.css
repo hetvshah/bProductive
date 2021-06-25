@@ -25,7 +25,7 @@ u:hover {
 
 .todo {
   background: #eee8f6;
-  border-radius: 25px;
+  border-radius: 1.8vw;
   margin: 0 0 1.5vw 0;
   padding: 10px 45px;
   /* margin-left: 7.5vw; */
@@ -306,6 +306,7 @@ u:hover {
   position: absolute;
   top: 0;
   right: 0;
+  font-size: 1vw;
 }
 
 .auth-button {
@@ -323,6 +324,7 @@ u:hover {
   color: darkgray;
   padding-bottom: 2vw;
   text-align: center;
+  font-size: 1vw;
 }
 
 span {
