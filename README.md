@@ -27,3 +27,4 @@ This was my first time building the frontend and backend of an application and d
 ### Todo
 * implement functionality for edit
 * fix bug where currentUser.displayName is null just when the user immediately signs in
+* make responsive

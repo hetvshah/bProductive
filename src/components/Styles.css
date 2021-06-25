@@ -25,7 +25,8 @@ u:hover {
 
 .todo {
   background: #eee8f6;
-  border-radius: 1.8vw;
+  /* border-radius: 1.8vw; */
+  border-radius: 25px;
   margin: 0 0 1.5vw 0;
   padding: 10px 45px;
   /* margin-left: 7.5vw; */
