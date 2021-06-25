@@ -5,6 +5,7 @@ import { IoMdPause } from 'react-icons/io';
 import './Styles.css';
 import moment from 'moment';
 import { useState } from 'react';
+import EditTask from '../EditTask';
 
 const OngoingTasks = ({
   ongoingTasks,
@@ -23,7 +24,7 @@ const OngoingTasks = ({
       <div className="todo">
         <div>
           <h3>{task.title}</h3>
-          <p>
+          <div>
             {task.specificTime
               ? task.start === '' && task.end === ''
                 ? ''
@@ -44,8 +45,10 @@ const OngoingTasks = ({
                 moment(new Date(task.start)).format('MMMM Do') +
                 ' to ' +
                 moment(new Date(task.end)).format('MMMM Do')}
-          </p>
-          <p>{task.notes === '' ? '' : 'Notes: ' + task.notes}</p>
+          </div>
+          <div style={{ paddingRight: '3vw', paddingBottom: '2vw' }}>
+            {task.notes === '' ? '' : 'Notes: ' + task.notes}
+          </div>
         </div>
 
         <div className="times">
@@ -75,7 +78,6 @@ const OngoingTasks = ({
               setDisplay(true);
               console.log('started working on ' + task.title);
               setStart(new Date());
-              // start = new Date()
             }}
           />
           <IoMdPause
@@ -86,12 +88,14 @@ const OngoingTasks = ({
               end = new Date();
               console.log(start);
               onPause(task, (end - start) / 60000);
-              // displayCurrent();
             }}
           />
 
           <GrCheckmark className="ongoing-task" onClick={() => onMove(task)} />
-          {/* <AiOutlineEdit className="ongoing-task" /> */}
+          <AiOutlineEdit
+            className="ongoing-task"
+            onClick={() => <EditTask />}
+          />
           <BsFillTrashFill
             className="ongoing-task trash"
             onClick={() => onDelete(task)}

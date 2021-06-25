@@ -47,14 +47,18 @@ u:hover {
 
 .times {
   text-align: center;
-  padding: 1vw 0;
-  margin-left: auto;
+  padding: 1vw 2vw 0 0;
+  /* margin-left: auto;
   margin-right: 0;
-  margin-bottom: 3vw;
+  margin-bottom: 3vw; */
   font-style: italic;
   font-weight: 200;
   color: #2c2c2c;
   font-size: 1vw;
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* width: 13vw; */
 }
 
 .task-btn {
