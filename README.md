@@ -58,4 +58,4 @@ This was my first time building the frontend and backend of an application and d
 * implement functionality for edit
 * fix bug where currentUser.displayName is null just when the user immediately signs in
 * make responsive
-* fix big where time tracker display doesn't show when something else is clicked
+* fix bug where time tracker display doesn't show when something else is clicked
