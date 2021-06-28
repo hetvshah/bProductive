@@ -4,6 +4,7 @@ import OngoingTasks from './OngoingTasks';
 import Header from './Header';
 import CompletedTasks from './CompletedTasks';
 import AddTask from './AddTask';
+import EditTask from './EditTask';
 import { useAuth } from '../components/contexts/AuthContext';
 import { db } from '../components/firebase';
 import React from 'react';
@@ -19,8 +20,9 @@ const Home = ({
   changeState,
 }) => {
   const { currentUser } = useAuth();
-  const [currentTitle, setCurrentTitle] = useState('');
+  const [currentTask, setCurrentTask] = useState();
   const [display, setDisplay] = useState(false);
+  const [edit, setEdit] = useState(false);
   // const [showAdd, setShowAdd] = useState(false);
 
   const addOngoingTask = (task, specificDay) => {
@@ -144,8 +146,11 @@ const Home = ({
       <p style={{ fontSize: '1.25vw', marginTop: '2.5vw' }}>
         📅 Today is {today.toDateString()}. Here is your to-do list!
       </p>
+
       {display && (
-        <div className="current-title">WORKING ON TASK "{currentTitle}"</div>
+        <div className="current-title">
+          WORKING ON TASK "{currentTask.title}"
+        </div>
       )}
 
       <div className="task-btn">
@@ -167,6 +172,8 @@ const Home = ({
         </span>
       </div>
 
+      {edit && <EditTask setEdit={setEdit} currentTask={currentTask} />}
+
       {showAddTask && <AddTask onAdd={addOngoingTask} />}
       {ongoingTasks.length > 0 ? (
         <OngoingTasks
@@ -174,8 +181,9 @@ const Home = ({
           onMove={moveOngoingTask}
           onDelete={deleteOngoingTask}
           onPause={addTimeSpent}
-          setCurrentTitle={setCurrentTitle}
+          setCurrentTask={setCurrentTask}
           setDisplay={setDisplay}
+          setEdit={setEdit}
         />
       ) : (
         'No tasks to show.'

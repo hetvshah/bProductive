@@ -1,19 +1,22 @@
 import { useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import DatePicker from 'react-date-picker';
+import { Link } from 'react-router-dom';
 
-const EditTask = () => {
-  const [title, setTitle] = useState('');
-  const [specificDay, setSpecificDay] = useState(false);
-  const [specificTime, setSpecificTime] = useState(false);
-  const [start, setStart] = useState(new Date());
-  const [end, setEnd] = useState(new Date());
-  const [estimateHours, setEstimateHours] = useState(0);
-  const [estimateMin, setEstimateMin] = useState(0);
-  const [notes, setNotes] = useState('');
-  const [displayTask, setDisplayTask] = useState(true);
-  const [displayCalendar, setDisplayCalendar] = useState(true);
-  const [timeSpent] = useState(0);
+const EditTask = ({ setEdit, currentTask }) => {
+  const [title, setTitle] = useState(currentTask.title);
+  const [specificDay, setSpecificDay] = useState(currentTask.specificDay);
+  const [specificTime, setSpecificTime] = useState(currentTask.specificTime);
+  const [start, setStart] = useState(currentTask.start);
+  const [end, setEnd] = useState(currentTask.end);
+  const [estimateHours, setEstimateHours] = useState(currentTask.estimateHours);
+  const [estimateMin, setEstimateMin] = useState(currentTask.estimateMin);
+  const [notes, setNotes] = useState(currentTask.notes);
+  const [displayTask, setDisplayTask] = useState(currentTask.displayTask);
+  const [displayCalendar, setDisplayCalendar] = useState(
+    currentTask.displayCalendar
+  );
+  // const [timeSpent] = useState(currentTask.timeSpent);
   // const [value, onChange] = useState(new Date());
 
   const onSubmit = (e) => {
@@ -186,6 +189,9 @@ const EditTask = () => {
           ''
         )}
         <input type="submit" value="Save Task" className="home-btn btn-block" />
+        <div className="w-100 text-center mt-2" style={{ paddingTop: '.5vw' }}>
+          <Link onClick={() => setEdit(false)}>Cancel</Link>
+        </div>
       </div>
     </form>
   );

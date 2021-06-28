@@ -5,15 +5,15 @@ import { IoMdPause } from 'react-icons/io';
 import './Styles.css';
 import moment from 'moment';
 import { useState } from 'react';
-import EditTask from '../EditTask';
 
 const OngoingTasks = ({
   ongoingTasks,
   onMove,
   onDelete,
   onPause,
-  setCurrentTitle,
+  setCurrentTask,
   setDisplay,
+  setEdit,
 }) => {
   var end;
   const [start, setStart] = useState();
@@ -80,7 +80,7 @@ const OngoingTasks = ({
           <BsPlayFill
             className="ongoing-task"
             onClick={() => {
-              setCurrentTitle(task.title);
+              setCurrentTask(task);
               setDisplay(true);
               console.log('started working on ' + task.title);
               setStart(new Date());
@@ -100,7 +100,10 @@ const OngoingTasks = ({
           <GrCheckmark className="ongoing-task" onClick={() => onMove(task)} />
           <AiOutlineEdit
             className="ongoing-task"
-            onClick={() => <EditTask />}
+            onClick={() => {
+              setEdit(true);
+              setCurrentTask(task);
+            }}
           />
           <BsFillTrashFill
             className="ongoing-task trash"
