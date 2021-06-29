@@ -2,6 +2,7 @@ import { Card, Button, Form, Alert } from 'react-bootstrap';
 import { useRef, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
+import Footer from '../Footer';
 
 const Login = ({ resetState }) => {
   const emailRef = useRef();
@@ -29,6 +30,7 @@ const Login = ({ resetState }) => {
 
   return (
     <>
+      <h1 className="product-name">bProductive</h1>
       <Card>
         <Card.Body>
           <h2 className="initial-header text-center mb-4">Log In</h2>
@@ -63,6 +65,7 @@ const Login = ({ resetState }) => {
       <div className="w-100 text-center mt-2">
         Need an account? <Link to="signup">Sign Up</Link>
       </div>
+      <Footer />
     </>
   );
 };

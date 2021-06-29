@@ -8,6 +8,7 @@ import EditTask from './EditTask';
 import { useAuth } from '../components/contexts/AuthContext';
 import { db } from '../components/firebase';
 import React from 'react';
+import Footer from './Footer';
 import { useState } from 'react';
 
 const Home = ({
@@ -257,6 +258,7 @@ const Home = ({
       ) : (
         <div style={{ fontSize: '1vw' }}>No tasks to show.</div>
       )}
+      <Footer />
     </div>
   );
 };

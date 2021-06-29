@@ -1,6 +1,7 @@
 import './Styles.css';
 import MyCalendar from './MyCalendar';
 import Header from './Header';
+import Footer from './Footer';
 
 const Calendar = ({ events }) => {
   const transform = (event) => {
@@ -22,6 +23,7 @@ const Calendar = ({ events }) => {
         <p className="calendar">Calendar</p>
       </div> */}
       <MyCalendar events={events} />
+      <Footer />
     </div>
   );
 };

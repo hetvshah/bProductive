@@ -2,6 +2,7 @@ import { Card, Button, Form, Alert } from 'react-bootstrap';
 import { useRef, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
+import Footer from '../Footer';
 
 const Signup = ({ resetState }) => {
   const nameRef = useRef();
@@ -39,6 +40,7 @@ const Signup = ({ resetState }) => {
 
   return (
     <>
+      <h1 className="product-name">bProductive</h1>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Sign Up</h2>
@@ -82,6 +84,7 @@ const Signup = ({ resetState }) => {
       <div className="w-100 text-center mt-2">
         Already have an account? <Link to="/login">Log In</Link>
       </div>
+      <Footer />
     </>
   );
 };

@@ -42,7 +42,7 @@ const CompletedTasks = ({ completedTasks, onMove, onDelete }) => {
         </div>
       </div>
 
-      <div className="times">
+      <div className="times" style={{ textDecoration: 'line-through' }}>
         {task.estimateHours === 0 && task.estimateMin !== 0
           ? task.estimateMin + 'm / '
           : task.estimateHours !== 0 && task.estimateMin === 0

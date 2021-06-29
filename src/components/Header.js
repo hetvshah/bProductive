@@ -36,10 +36,8 @@ const Header = () => {
 
   return (
     <div>
+      <div>{/* <h1 className="main-header">bProductive</h1> */}</div>
       <div className="auth-buttons">
-        {/* <label>
-        <strong>Email: </strong> {currentUser.email}
-      </label> */}
         <button
           type="submit"
           className="auth-button"

@@ -2,6 +2,7 @@ import { Card, Button, Form, Alert } from 'react-bootstrap';
 import { useRef, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
+import Footer from '../Footer';
 
 const UpdateProfile = () => {
   const nameRef = useRef();
@@ -104,6 +105,7 @@ const UpdateProfile = () => {
       <div className="w-100 text-center mt-2">
         <Link to="/">Cancel</Link>
       </div>
+      <Footer />
     </>
   );
 };
