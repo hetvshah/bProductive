@@ -25,8 +25,8 @@ u:hover {
 
 .todo {
   background: #eee8f6;
-  /* border-radius: 1.8vw; */
-  border-radius: 25px;
+  border-radius: 1.8vw;
+  /* border-radius: 25px; */
   margin: 0 0 1.5vw 0;
   /* padding: 10px 45px; */
   padding: 0.5vw 2vw;
@@ -352,11 +352,12 @@ span {
 .current-title {
   background-color: white;
   border: #2c2c2c;
-  border-radius: 50px;
+  border-radius: 3vw;
   padding: 0.5vw;
   font-style: italic;
   font-weight: 700;
   text-align: center;
   border-style: solid;
   border-width: 1px;
+  font-size: 1vw;
 }
