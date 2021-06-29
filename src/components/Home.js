@@ -11,15 +11,7 @@ import React from 'react';
 import Footer from './Footer';
 import { useState } from 'react';
 
-const Home = ({
-  ongoingTasks,
-  setOngoingTasks,
-  completedTasks,
-  setCompletedTasks,
-  showAddTask,
-  setAddTask,
-  changeState,
-}) => {
+const Home = ({ ongoingTasks, completedTasks, showAddTask, changeState }) => {
   const { currentUser } = useAuth();
   const [currentTask, setCurrentTask] = useState();
   const [display, setDisplay] = useState(false);
