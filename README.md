@@ -2,7 +2,7 @@
 
 Plan your days and track your productivity with this user-friendly and simplistically designed web-based app 
 
-*insert progress image here*
+<img width="1286" alt="Screen Shot 2021-06-29 at 9 15 10 AM" src="https://user-images.githubusercontent.com/68198839/123813559-03dd7700-d8c3-11eb-8694-8955f37d2987.png">
 
 Built with: [React](https://reactjs.org/) and [Firebase](https://firebase.google.com/docs)
 
