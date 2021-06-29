@@ -36,64 +36,6 @@ class App extends React.Component {
     });
   };
 
-  // const [showAddTask, setAddTask] = useState(false);
-
-  // const [ongoingTasks, setOngoingTasks] = useState([
-  //   {
-  //     title: 'Finish part 7 of CIS 121 programming. ',
-  //     specificTime: true,
-  //     start: new Date(2021, 5, 12, 20, 9, 30, 0),
-  //     end: new Date(2021, 5, 15, 20, 9, 45, 0),
-  //     estimate: '15m',
-  //     notes: 'Make sure to pay attention to runtimes. ',
-  //     displayTask: true,
-  //     displayCalendar: true,
-  //   },
-  //   {
-  //     title: 'Respond to emails.',
-  //     specificTime: false,
-  //     start: new Date(2015, 5, 21, 20, 0, 0, 0),
-  //     end: new Date(2015, 5, 25, 20, 0, 0, 0),
-  //     estimate: '2m',
-  //     notes: 'Specifically John Doe and research mentor.',
-  //     displayTask: true,
-  //     displayCalendar: false,
-  //   },
-  //   {
-  //     title: 'Search for apartments.',
-  //     specificTime: true,
-  //     start: new Date(2021, 5, 21, 20, 0, 0, 0),
-  //     end: new Date(2021, 5, 21, 20, 0, 0, 0),
-  //     estimate: '3hr',
-  //     notes: '',
-  //     displayTask: true,
-  //     displayCalendar: true,
-  //   },
-  // ]);
-
-  // const [completedTasks, setCompletedTasks] = useState([
-  //   {
-  //     title: 'Call mom. ',
-  //     specificTime: true,
-  //     start: new Date(2015, 5, 21, 20, 10, 0, 0),
-  //     end: new Date(2015, 5, 21, 20, 10, 0, 0),
-  //     estimate: '1hr',
-  //     notes: 'Ask about trip to NYC.',
-  //     displayTask: true,
-  //     displayCalendar: true,
-  //   },
-  //   {
-  //     title: 'Call dad. ',
-  //     specificTime: true,
-  //     start: new Date(2015, 5, 21, 20, 11, 0, 0),
-  //     end: new Date(2015, 5, 21, 20, 11, 0, 0),
-  //     estimate: '2hr',
-  //     notes: 'Buy textbooks.',
-  //     displayTask: true,
-  //     displayCalendar: true,
-  //   },
-  // ]);
-
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {

@@ -126,11 +126,7 @@ const EditTask = ({ setEdit, currentTask, onUpdate }) => {
             <div className="datetime-picker">
               <label style={{ marginBottom: '1vw' }}>End Day</label>
               <div>
-                <DatePicker
-                  onChange={setEnd}
-                  value={end}
-                  // onChange={(e) => setDay(e.target.value)}
-                />
+                <DatePicker onChange={setEnd} value={end} />
               </div>
             </div>
           </div>

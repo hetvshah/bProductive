@@ -24,10 +24,8 @@ const Home = ({
   const [currentTask, setCurrentTask] = useState();
   const [display, setDisplay] = useState(false);
   const [edit, setEdit] = useState(false);
-  // const [showAdd, setShowAdd] = useState(false);
 
   const addOngoingTask = (task) => {
-    // setOngoingTasks([...ongoingTasks, task]);
     if (task.specificDay) {
       db.ref('users/' + currentUser.uid + '/ongoingTasks')
         .push()
@@ -64,8 +62,6 @@ const Home = ({
   };
 
   const addCompletedTask = (task) => {
-    // setCompletedTasks([...completedTasks, task]);
-
     db.ref('users/' + currentUser.uid + '/completedTasks')
       .push()
       .set({
@@ -235,13 +231,6 @@ const Home = ({
         <button
           className="home-btn delete"
           onClick={() => {
-            // for (var i = 0; i < completedTasks.length; i++) {
-            //   console.log(completedTasks[i]);
-            //   deleteCompletedTask(completedTasks[i]);
-            // }
-            // completedTasks.map((task) => {
-            //   deleteCompletedTask(task);
-            // });
             db.ref('users/' + currentUser.uid + '/completedTasks').remove();
           }}
         >

@@ -2,29 +2,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../components/contexts/AuthContext';
 
 const Header = () => {
-  //   let homeStyle = { color: 'black' };
-  //   let calendarStyle = { color: 'black' };
-  //   let trackerStyle = { color: 'black' };
-
-  //   const homeClicked = () => {
-  //     console.log('hello');
-  //     homeStyle = { color: 'pink' };
-  //     calendarStyle = { color: 'black' };
-  //     trackerStyle = { color: 'black' };
-  //   };
-
-  //   const calendarClicked = () => {
-  //     homeStyle = { color: 'black' };
-  //     calendarStyle = { color: 'pink' };
-  //     trackerStyle = { color: 'black' };
-  //   };
-
-  //   const trackerClicked = () => {
-  //     homeStyle = { color: 'black' };
-  //     calendarStyle = { color: 'black' };
-  //     trackerStyle = { color: 'pink' };
-  //   };
-
   const { currentUser, logout } = useAuth();
 
   const history = useHistory();
@@ -36,7 +13,6 @@ const Header = () => {
 
   return (
     <div>
-      <div>{/* <h1 className="main-header">bProductive</h1> */}</div>
       <div className="auth-buttons">
         <button
           type="submit"

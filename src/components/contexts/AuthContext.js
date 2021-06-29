@@ -29,11 +29,8 @@ export function AuthProvider({ children }) {
         displayName: name,
       });
 
-      // console.log(user);
       writeUserData(user.user.uid, name, [], []);
     });
-
-    // await currentUser.reload();
 
     return promise;
   }
