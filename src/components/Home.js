@@ -25,13 +25,14 @@ const Home = ({
   const [edit, setEdit] = useState(false);
   // const [showAdd, setShowAdd] = useState(false);
 
-  const addOngoingTask = (task, specificDay) => {
+  const addOngoingTask = (task) => {
     // setOngoingTasks([...ongoingTasks, task]);
-    if (specificDay) {
+    if (task.specificDay) {
       db.ref('users/' + currentUser.uid + '/ongoingTasks')
         .push()
         .set({
           title: task.title,
+          specificDay: task.specificDay,
           specificTime: task.specificTime,
           start: task.start.toString(),
           end: task.end.toString(),
@@ -47,6 +48,7 @@ const Home = ({
         .push()
         .set({
           title: task.title,
+          specificDay: task.specificDay,
           specificTime: task.specificTime,
           start: '',
           end: '',
@@ -67,6 +69,7 @@ const Home = ({
       .push()
       .set({
         title: task.title,
+        specificDay: task.specificDay,
         specificTime: task.specificTime,
         start: task.start.toString(),
         end: task.end.toString(),
@@ -102,16 +105,49 @@ const Home = ({
   };
 
   const addTimeSpent = (task, time) => {
-    console.log(task.timeSpent);
-    console.log(time);
-    console.log(Number(time));
     task.timeSpent = task.timeSpent + time;
-    console.log(task.timeSpent);
     db.ref('users/' + currentUser.uid + '/ongoingTasks')
       .child(task.id)
       .update({
         timeSpent: task.timeSpent,
       });
+  };
+
+  const updateTask = (task, id) => {
+    console.log(task.time);
+    if (task.specificDay) {
+      db.ref('users/' + currentUser.uid + '/ongoingTasks')
+        .child(id)
+        .update({
+          title: task.title,
+          specificDay: task.specificDay,
+          specificTime: task.specificTime,
+          start: task.start.toString(),
+          end: task.end.toString(),
+          estimateHours: task.estimateHours,
+          estimateMin: task.estimateMin,
+          notes: task.notes,
+          displayTask: task.displayTask,
+          displayCalendar: task.displayCalendar,
+          timeSpent: task.timeSpent,
+        });
+    } else {
+      db.ref('users/' + currentUser.uid + '/ongoingTasks')
+        .child(id)
+        .update({
+          title: task.title,
+          specificDay: task.specificDay,
+          specificTime: task.specificTime,
+          start: '',
+          end: '',
+          estimateHours: task.estimateHours,
+          estimateMin: task.estimateMin,
+          notes: task.notes,
+          displayTask: task.displayTask,
+          displayCalendar: task.displayCalendar,
+          timeSpent: task.timeSpent,
+        });
+    }
   };
 
   const timeElapsed = Date.now();
@@ -122,9 +158,6 @@ const Home = ({
   var totalWorkedHours = 0;
   var totalWorkedMin = 0;
 
-  // db.ref('users/' + currentUser.uid + '/ongoingTasks').on(
-  //   'value',
-  //   (snapshot) => {
   ongoingTasks.map((task) => {
     totalEstHours += parseFloat(task.estimateHours);
     totalEstMin += parseFloat(task.estimateMin);
@@ -132,13 +165,12 @@ const Home = ({
   });
 
   totalWorkedMin = Math.round(totalWorkedMin);
+  console.log(totalWorkedMin);
 
   totalEstHours += Math.floor(totalEstMin / 60);
   totalEstMin = totalEstMin % 60;
   totalWorkedHours += Math.floor(totalWorkedMin / 60);
   totalWorkedMin = totalWorkedMin % 60;
-  // }
-  // );
 
   return (
     <div>
@@ -172,7 +204,13 @@ const Home = ({
         </span>
       </div>
 
-      {edit && <EditTask setEdit={setEdit} currentTask={currentTask} />}
+      {edit && (
+        <EditTask
+          setEdit={setEdit}
+          currentTask={currentTask}
+          onUpdate={updateTask}
+        />
+      )}
 
       {showAddTask && <AddTask onAdd={addOngoingTask} />}
       {ongoingTasks.length > 0 ? (
@@ -186,7 +224,7 @@ const Home = ({
           setEdit={setEdit}
         />
       ) : (
-        'No tasks to show.'
+        <div style={{ fontSize: '1vw' }}>No tasks to show.</div>
       )}
 
       <div className="task-btn">
@@ -217,7 +255,7 @@ const Home = ({
           onDelete={deleteCompletedTask}
         />
       ) : (
-        'No tasks to show.'
+        <div style={{ fontSize: '1vw' }}>No tasks to show.</div>
       )}
     </div>
   );

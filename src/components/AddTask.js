@@ -25,23 +25,22 @@ const AddTask = ({ onAdd }) => {
       setDisplayCalendar(false);
     }
 
-    onAdd(
-      {
-        title,
-        specificTime,
-        start,
-        end,
-        estimateHours,
-        estimateMin,
-        notes,
-        displayTask,
-        displayCalendar,
-        timeSpent,
-      },
-      specificDay
-    );
+    onAdd({
+      title,
+      specificDay,
+      specificTime,
+      start,
+      end,
+      estimateHours,
+      estimateMin,
+      notes,
+      displayTask,
+      displayCalendar,
+      timeSpent,
+    });
 
     setTitle('');
+    setSpecificDay(false);
     setSpecificTime(false);
     setStart(new Date());
     setEnd(new Date());

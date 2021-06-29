@@ -28,7 +28,8 @@ u:hover {
   /* border-radius: 1.8vw; */
   border-radius: 25px;
   margin: 0 0 1.5vw 0;
-  padding: 10px 45px;
+  /* padding: 10px 45px; */
+  padding: 0.5vw 2vw;
   /* margin-left: 7.5vw; */
   /* margin-right: 7.5vw; */
   display: flex;

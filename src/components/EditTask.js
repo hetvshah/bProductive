@@ -3,7 +3,7 @@ import DateTimePicker from 'react-datetime-picker';
 import DatePicker from 'react-date-picker';
 import { Link } from 'react-router-dom';
 
-const EditTask = ({ setEdit, currentTask }) => {
+const EditTask = ({ setEdit, currentTask, onUpdate }) => {
   const [title, setTitle] = useState(currentTask.title);
   const [specificDay, setSpecificDay] = useState(currentTask.specificDay);
   const [specificTime, setSpecificTime] = useState(currentTask.specificTime);
@@ -16,35 +16,44 @@ const EditTask = ({ setEdit, currentTask }) => {
   const [displayCalendar, setDisplayCalendar] = useState(
     currentTask.displayCalendar
   );
-  // const [timeSpent] = useState(currentTask.timeSpent);
-  // const [value, onChange] = useState(new Date());
+  const [timeSpent, setTimeSpent] = useState(currentTask.timeSpent);
+  const [totalWorkedHours, setTotalWorkedHours] = useState(
+    Math.floor(timeSpent / 60)
+  );
+  const [totalWorkedMin, setTotalWorkedMin] = useState(
+    Math.round(timeSpent % 60)
+  );
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(start);
+
     if (!specificDay) {
       console.log('CHECK');
       setSpecificTime(false);
       setDisplayCalendar(false);
     }
 
-    // onAdd(
-    //   {
-    //     title,
-    //     specificTime,
-    //     start,
-    //     end,
-    //     estimateHours,
-    //     estimateMin,
-    //     notes,
-    //     displayTask,
-    //     displayCalendar,
-    //     timeSpent,
-    //   },
-    //   specificDay
-    // );
+    onUpdate(
+      {
+        title,
+        specificDay,
+        specificTime,
+        start,
+        end,
+        estimateHours,
+        estimateMin,
+        notes,
+        displayTask,
+        displayCalendar,
+        timeSpent,
+      },
+      currentTask.id
+    );
+
+    setEdit(false);
 
     setTitle('');
+    setSpecificDay(false);
     setSpecificTime(false);
     setStart(new Date());
     setEnd(new Date());
@@ -153,6 +162,37 @@ const EditTask = ({ setEdit, currentTask }) => {
             />
             <label className="estimated-time-lbl">minutes</label>
           </div>
+
+          <label style={{ marginBottom: '1vw', marginTop: '1vw' }}>
+            Time Spent
+          </label>
+          <div className="estimate">
+            <input
+              className="estimated-time-inpt"
+              type="number"
+              placeholder="add estimated time"
+              value={totalWorkedHours}
+              onChange={(e) => {
+                console.log(e.target.value);
+                setTotalWorkedHours(parseFloat(e.target.value));
+                setTimeSpent(parseFloat(e.target.value) * 60 + totalWorkedMin);
+              }}
+            />
+            <label className="estimated-time-lbl">hours</label>
+            <input
+              className="estimated-time-inpt"
+              type="number"
+              placeholder="add estimated time"
+              value={totalWorkedMin}
+              onChange={(e) => {
+                setTotalWorkedMin(parseFloat(e.target.value));
+                setTimeSpent(
+                  totalWorkedHours * 60 + parseFloat(e.target.value)
+                );
+              }}
+            />
+            <label className="estimated-time-lbl">minutes</label>
+          </div>
         </div>
 
         <div className="form-control-task">
@@ -188,7 +228,11 @@ const EditTask = ({ setEdit, currentTask }) => {
         ) : (
           ''
         )}
-        <input type="submit" value="Save Task" className="home-btn btn-block" />
+        <input
+          type="submit"
+          value="Update Task"
+          className="home-btn btn-block"
+        />
         <div className="w-100 text-center mt-2" style={{ paddingTop: '.5vw' }}>
           <Link onClick={() => setEdit(false)}>Cancel</Link>
         </div>

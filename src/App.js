@@ -106,6 +106,7 @@ class App extends React.Component {
           previousOngoingTasks.push({
             id: snap.key,
             title: snap.val().title,
+            specificDay: snap.val().specificDay,
             specificTime: snap.val().specificTime,
             start: snap.val().start,
             end: snap.val().end,
@@ -125,6 +126,7 @@ class App extends React.Component {
           previousCompletedTasks.push({
             id: snap.key,
             title: snap.val().title,
+            specificDay: snap.val().specificDay,
             specificTime: snap.val().specificTime,
             start: snap.val().start,
             end: snap.val().end,
@@ -167,9 +169,6 @@ class App extends React.Component {
       }
 
       db.ref('users/' + uid + '/ongoingTasks').on('value', (snapshot) => {
-        console.log('HELLO');
-        // console.log(snapshot.val());
-        console.log(this.state.ongoingTasks);
         if (snapshot.exists()) {
           var newArr = [];
 
@@ -179,8 +178,6 @@ class App extends React.Component {
 
             newArr.push(item);
           });
-
-          console.log(newArr);
 
           this.setState({
             ongoingTasks: newArr,
