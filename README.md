@@ -4,7 +4,7 @@ Plan your days and track your productivity with this user-friendly and simplisti
 
 Built with: [React](https://reactjs.org/) and [Firebase](https://firebase.google.com/docs)
 
-<img width="1280" alt="Screen Shot 2021-06-29 at 9 15 10 AM" src="https://user-images.githubusercontent.com/68198839/123814080-68003b00-d8c3-11eb-8f47-3cdff43d8f84.png">
+<img width="1436" alt="Screen Shot 2021-06-29 at 3 18 08 PM" src="https://user-images.githubusercontent.com/68198839/123861815-9b5bbd80-d8f5-11eb-81e8-d6ef03215113.png">
 
 ### About
 
