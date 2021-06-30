@@ -1,6 +1,6 @@
 # bProductive
 
-Plan your days and track your productivity with this user-friendly and simplistically designed web-based app 
+Plan your days and track your productivity with this user-friendly and simplistically designed web-based app!
 
 Built with: [React](https://reactjs.org/) and [Firebase](https://firebase.google.com/docs)
 
