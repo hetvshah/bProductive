@@ -364,7 +364,6 @@ span {
 
 .product-name {
   font-size: 3vw;
-  color: purple;
-  opacity: 30%;
+  color: rgb(200, 153, 209);
   text-align: center;
 }
