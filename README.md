@@ -23,6 +23,8 @@ This was my first time building the frontend and backend of an application and d
 * [react-big-calendar](https://github.com/jquense/react-big-calendar)
 * [date & time picker](https://projects.wojtekmaj.pl/react-datetime-picker/)
 * [task form](https://www.youtube.com/watch?v=w7ejDZ8SWv8&t=3423s&ab_channel=TraversyMedia)
+* [netlify](https://docs.netlify.com/)
+* [misc](https://github.com/fibanneacci)
 
 ### Todo
 * fix bug where currentUser.displayName is null just when the user immediately signs in
