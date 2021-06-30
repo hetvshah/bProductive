@@ -151,6 +151,7 @@ const Home = ({ ongoingTasks, completedTasks, showAddTask, changeState }) => {
     totalEstHours += parseFloat(task.estimateHours);
     totalEstMin += parseFloat(task.estimateMin);
     totalWorkedMin += task.timeSpent;
+    return null;
   });
 
   totalWorkedMin = Math.round(totalWorkedMin);

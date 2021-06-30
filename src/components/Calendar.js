@@ -13,6 +13,7 @@ const Calendar = ({ events }) => {
 
   events.map((event) => {
     transform(event);
+    return null;
   });
 
   return (
