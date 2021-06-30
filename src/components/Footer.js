@@ -5,7 +5,7 @@ const Footer = () => {
     <div style={{ position: 'relative' }}>
       <footer
         style={{
-          fontSize: '1vw',
+          fontSize: '16px',
           textAlign: 'center',
           margin: '1vw auto',
         }}
