@@ -18,19 +18,21 @@ From designing to implementing, I've learned a lot technically and behaviorly. I
 
 This was my first time building the frontend and backend of an application and deploying it. I used a lot of resources and followed many tutorials:
 
-* [setup for auth / firebase](https://www.youtube.com/watch?v=PKwu15ldZ7k&t=2352s&ab_channel=WebDevSimplifiedWebDevSimplified)
-* [random firebase bug](https://medium.com/firebase-developers/why-is-my-currentuser-null-in-firebase-auth-4701791f74f0)
-* [react-big-calendar](https://github.com/jquense/react-big-calendar)
-* [date & time picker](https://projects.wojtekmaj.pl/react-datetime-picker/)
-* [task form](https://www.youtube.com/watch?v=w7ejDZ8SWv8&t=3423s&ab_channel=TraversyMedia)
-* [netlify](https://docs.netlify.com/)
-* [misc](https://github.com/fibanneacci)
-* [emojis as favicons](https://css-tricks.com/emojis-as-favicons/)
+- [setup for auth / firebase](https://www.youtube.com/watch?v=PKwu15ldZ7k&t=2352s&ab_channel=WebDevSimplifiedWebDevSimplified)
+- [random firebase bug](https://medium.com/firebase-developers/why-is-my-currentuser-null-in-firebase-auth-4701791f74f0)
+- [react-big-calendar](https://github.com/jquense/react-big-calendar)
+- [date & time picker](https://projects.wojtekmaj.pl/react-datetime-picker/)
+- [task form](https://www.youtube.com/watch?v=w7ejDZ8SWv8&t=3423s&ab_channel=TraversyMedia)
+- [netlify](https://docs.netlify.com/)
+- [misc](https://github.com/fibanneacci)
+- [emojis as favicons](https://css-tricks.com/emojis-as-favicons/)
 
 ### Todo
-* fix bug where currentUser.displayName is null just when the user immediately signs in
-* make calendar responsive
-* fix bug where time tracker display doesn't show when something else is clicked
-* time tracker sticky header perhaps?
-* switching between pause and play icons on task rather than displaying both,, might require scss??
-* weird bug with dates & times when editing
+
+- fix bug where currentUser.displayName is null just when the user immediately signs in
+- make calendar responsive
+- fix bug where time tracker display doesn't show when something else is clicked
+- time tracker sticky header perhaps?
+- switching between pause and play icons on task rather than displaying both,, might require scss??
+- weird bug with dates & times when editing
+- footer styling
