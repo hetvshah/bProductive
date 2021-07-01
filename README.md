@@ -34,3 +34,4 @@ This was my first time building the frontend and backend of an application and d
 * time tracker sticky header perhaps?
 * switching between pause and play icons on task rather than displaying both,, might require scss??
 * weird bug with dates & times when editing
+* footer styling
