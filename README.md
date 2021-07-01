@@ -25,6 +25,7 @@ This was my first time building the frontend and backend of an application and d
 * [task form](https://www.youtube.com/watch?v=w7ejDZ8SWv8&t=3423s&ab_channel=TraversyMedia)
 * [netlify](https://docs.netlify.com/)
 * [misc](https://github.com/fibanneacci)
+* [emojis as favicons](https://css-tricks.com/emojis-as-favicons/)
 
 ### Todo
 * fix bug where currentUser.displayName is null just when the user immediately signs in
