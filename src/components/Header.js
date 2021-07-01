@@ -2,9 +2,12 @@ import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../components/contexts/AuthContext';
 
 const Header = () => {
-  const { currentUser, logout } = useAuth();
+  const { currentUser, logout, displayName } = useAuth();
 
   const history = useHistory();
+
+  console.log(currentUser);
+  console.log(currentUser.displayName);
 
   async function handleLogout() {
     await logout();
@@ -30,7 +33,7 @@ const Header = () => {
       </div>
 
       <div className="header">
-        <p>👋 Hi {currentUser.displayName}!</p>
+        <p>👋 Hi {displayName}!</p>
         <div className="topLinks">
           <p>
             <Link to="/">

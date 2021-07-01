@@ -155,7 +155,6 @@ const Home = ({ ongoingTasks, completedTasks, showAddTask, changeState }) => {
   });
 
   totalWorkedMin = Math.round(totalWorkedMin);
-  console.log(totalWorkedMin);
 
   totalEstHours += Math.floor(totalEstMin / 60);
   totalEstMin = totalEstMin % 60;

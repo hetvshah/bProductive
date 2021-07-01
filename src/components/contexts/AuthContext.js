@@ -21,8 +21,10 @@ function writeUserData(userId, name, ongoingTasks, completedTasks) {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
+  const [displayName, setDisplayName] = useState('');
 
   function signup(name, email, password) {
+    setDisplayName(name);
     const promise = auth.createUserWithEmailAndPassword(email, password);
     promise.then(function (user) {
       user.user.updateProfile({
@@ -79,6 +81,7 @@ export function AuthProvider({ children }) {
     updateEmail,
     updatePassword,
     updateName,
+    displayName,
   };
 
   return (
