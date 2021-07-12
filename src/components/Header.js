@@ -2,7 +2,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../components/contexts/AuthContext';
 
 const Header = () => {
-  const { currentUser, logout, displayName } = useAuth();
+  const { currentUser, logout } = useAuth();
 
   const history = useHistory();
 
@@ -33,7 +33,7 @@ const Header = () => {
       </div>
 
       <div className="header">
-        <p>👋 Hi {displayName}!</p>
+        <p>👋 Hi {currentUser.displayName}!</p>
         <div className="topLinks">
           <p>
             <Link to="/">
