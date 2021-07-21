@@ -162,83 +162,86 @@ const Home = ({ ongoingTasks, completedTasks, showAddTask, changeState }) => {
   totalWorkedMin = totalWorkedMin % 60;
 
   return (
-    <div>
-      <Header />
-      <p style={{ fontSize: '1.25vw', marginTop: '2.5vw' }}>
-        📅 Today is {today.toDateString()}. Here is your to-do list!
-      </p>
+    <div className="container-main">
+      <div className="content">
+        <Header />
+        <p style={{ fontSize: '1.25vw', marginTop: '2.5vw' }}>
+          📅 Today is {today.toDateString()}. Here is your to-do list!
+        </p>
 
-      {display && (
-        <div className="current-title">
-          WORKING ON TASK "{currentTask.title}"
+        {display && (
+          <div className="current-title">
+            WORKING ON TASK "{currentTask.title}"
+          </div>
+        )}
+
+        <div className="task-btn">
+          <h2 style={{ padding: '0 0 0.25vw 0', fontSize: '1.5vw' }}>
+            Ongoing Tasks
+          </h2>
+          <Button
+            onClick={() => changeState(!showAddTask)}
+            showAddTask={showAddTask}
+          />
         </div>
-      )}
 
-      <div className="task-btn">
-        <h2 style={{ padding: '0 0 0.25vw 0', fontSize: '1.5vw' }}>
-          Ongoing Tasks
-        </h2>
-        <Button
-          onClick={() => changeState(!showAddTask)}
-          showAddTask={showAddTask}
-        />
+        <div className="summary">
+          <span>
+            Estimated Time Needed: ~ {totalEstHours + 'h ' + totalEstMin + 'm'}
+          </span>
+          <span>
+            Time Worked: ~ {totalWorkedHours + 'h ' + totalWorkedMin + 'm'}
+          </span>
+        </div>
+
+        {edit && (
+          <EditTask
+            setEdit={setEdit}
+            currentTask={currentTask}
+            onUpdate={updateTask}
+          />
+        )}
+
+        {showAddTask && <AddTask onAdd={addOngoingTask} />}
+        {ongoingTasks.length > 0 ? (
+          <OngoingTasks
+            ongoingTasks={ongoingTasks}
+            onMove={moveOngoingTask}
+            onDelete={deleteOngoingTask}
+            onPause={addTimeSpent}
+            setCurrentTask={setCurrentTask}
+            setDisplay={setDisplay}
+            setEdit={setEdit}
+          />
+        ) : (
+          <div style={{ fontSize: '1vw' }}>No tasks to show.</div>
+        )}
+
+        <div className="task-btn">
+          <h2 style={{ padding: '0 0 0.25vw 0', fontSize: '1.5vw' }}>
+            Completed Tasks
+          </h2>
+          <button
+            className="home-btn delete"
+            onClick={() => {
+              db.ref('users/' + currentUser.uid + '/completedTasks').remove();
+            }}
+          >
+            Delete All
+          </button>
+        </div>
+
+        {completedTasks.length > 0 ? (
+          <CompletedTasks
+            completedTasks={completedTasks}
+            onMove={moveCompleteTask}
+            onDelete={deleteCompletedTask}
+          />
+        ) : (
+          <div style={{ fontSize: '1vw' }}>No tasks to show.</div>
+        )}
       </div>
 
-      <div className="summary">
-        <span>
-          Estimated Time Needed: ~ {totalEstHours + 'h ' + totalEstMin + 'm'}
-        </span>
-        <span>
-          Time Worked: ~ {totalWorkedHours + 'h ' + totalWorkedMin + 'm'}
-        </span>
-      </div>
-
-      {edit && (
-        <EditTask
-          setEdit={setEdit}
-          currentTask={currentTask}
-          onUpdate={updateTask}
-        />
-      )}
-
-      {showAddTask && <AddTask onAdd={addOngoingTask} />}
-      {ongoingTasks.length > 0 ? (
-        <OngoingTasks
-          ongoingTasks={ongoingTasks}
-          onMove={moveOngoingTask}
-          onDelete={deleteOngoingTask}
-          onPause={addTimeSpent}
-          setCurrentTask={setCurrentTask}
-          setDisplay={setDisplay}
-          setEdit={setEdit}
-        />
-      ) : (
-        <div style={{ fontSize: '1vw' }}>No tasks to show.</div>
-      )}
-
-      <div className="task-btn">
-        <h2 style={{ padding: '0 0 0.25vw 0', fontSize: '1.5vw' }}>
-          Completed Tasks
-        </h2>
-        <button
-          className="home-btn delete"
-          onClick={() => {
-            db.ref('users/' + currentUser.uid + '/completedTasks').remove();
-          }}
-        >
-          Delete All
-        </button>
-      </div>
-
-      {completedTasks.length > 0 ? (
-        <CompletedTasks
-          completedTasks={completedTasks}
-          onMove={moveCompleteTask}
-          onDelete={deleteCompletedTask}
-        />
-      ) : (
-        <div style={{ fontSize: '1vw' }}>No tasks to show.</div>
-      )}
       <Footer />
     </div>
   );
