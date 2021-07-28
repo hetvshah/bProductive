@@ -30,8 +30,6 @@ This was my first time building the frontend and backend of an application and d
 ### Todo
 
 - make calendar responsive
-- fix bug where time tracker display doesn't show when something else is clicked
-- time tracker sticky header perhaps?
+- fix bug where time tracker display / continue doesn't show when something else is clicked
 - switching between pause and play icons on task rather than displaying both,, might require scss??
 - weird bug with dates & times when editing
-- footer styling
