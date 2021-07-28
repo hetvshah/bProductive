@@ -15,8 +15,11 @@ const Header = () => {
   }
 
   return (
-    <div>
+    <div className="top">
       <div className="auth-buttons">
+        <button type="submit" onClick={handleLogout} className="auth-button">
+          Log Out
+        </button>
         <button
           type="submit"
           className="auth-button"
@@ -25,10 +28,6 @@ const Header = () => {
           }}
         >
           Update Profile
-        </button>
-
-        <button type="submit" onClick={handleLogout} className="auth-button">
-          Log Out
         </button>
       </div>
 

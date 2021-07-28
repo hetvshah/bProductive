@@ -68,7 +68,7 @@ const OngoingTasks = ({
             : task.estimateHours === 0 && task.estimateMin === 0
             ? '- / '
             : task.estimateHours + 'h ' + task.estimateMin + 'm / '}
-          {task.timeSpent === 0
+          {Math.round(task.timeSpent) === 0
             ? '-'
             : Math.round(task.timeSpent) % 60 === 0
             ? Math.floor(Math.round(task.timeSpent) / 60) + 'h'

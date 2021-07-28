@@ -164,16 +164,15 @@ const Home = ({ ongoingTasks, completedTasks, showAddTask, changeState }) => {
   return (
     <div className="container-main">
       <div className="content">
-        <Header />
-        <p style={{ fontSize: '1.25vw', marginTop: '2.5vw' }}>
-          📅 Today is {today.toDateString()}. Here is your to-do list!
-        </p>
-
         {display && (
           <div className="current-title">
             WORKING ON TASK "{currentTask.title}"
           </div>
         )}
+        <Header />
+        <p style={{ fontSize: '1.25vw', marginTop: '2.5vw' }}>
+          📅 Today is {today.toDateString()}. Here is your to-do list!
+        </p>
 
         <div className="task-btn">
           <h2 style={{ padding: '0 0 0.25vw 0', fontSize: '1.5vw' }}>

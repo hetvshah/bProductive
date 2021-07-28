@@ -1,11 +1,9 @@
 .header {
-  /* width: 100vw; */
   height: 5vh;
   display: flex;
   flex-direction: row;
   font-size: 1.5vw;
-  margin: 0;
-  margin-top: 2vw;
+  margin-top: -1.2rem;
 }
 
 .topLinks {
@@ -305,13 +303,12 @@ u:hover {
 }
 
 .auth-buttons {
-  position: absolute;
-  top: 0;
-  right: 0;
   font-size: 1vw;
+  padding-top: 0.1rem;
 }
 
 .auth-button {
+  float: right;
   background-color: #f3efff;
   border: none;
   margin: 0.7vw 0.5vw 1vw 0.1vw;
@@ -358,7 +355,6 @@ span {
 .current-title {
   background-color: white;
   border: #2c2c2c;
-  border-radius: 3vw;
   padding: 0.5vw;
   font-style: italic;
   font-weight: 700;
@@ -366,6 +362,16 @@ span {
   border-style: solid;
   border-width: 1px;
   font-size: 1vw;
+
+  /* position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 999; */
+
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .container-main {
@@ -376,4 +382,9 @@ span {
 
 .content {
   flex-grow: 1;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
 }
